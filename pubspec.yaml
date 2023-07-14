@@ -1,0 +1,51 @@
+name: annotation
+description: Flutter Project by ITCoderz. Flutter SDK Version for the app is 3.10.6 .
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.6 <4.0.0'
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  cupertino_icons: ^1.0.5
+  get: ^4.6.5
+  flutter_launcher_icons: ^0.13.1
+  flutter_svg: ^2.0.7
+  font_awesome_flutter: ^10.5.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.2
+
+flutter_icons:
+  image_path: "assets/images/app_icon/app_icon.png"
+  android: true
+  ios: true
+  remove_alpha_ios: true
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/
+    - assets/images/
+    - assets/fonts/
+    - assets/images/app_icon/
+
+  fonts:
+    - family: Quantico
+      fonts:
+        - asset: assets/fonts/quantico/Quantico-Italic.ttf
+        - asset: assets/fonts/quantico/Quantico-Regular.ttf
+        - asset: assets/fonts/quantico/Quantico-Bold.ttf
+
