@@ -34,7 +34,7 @@ class CustomElevatedButton extends StatelessWidget {
       child: FittedBox(
         child: Text(
           buttonText,
-          style: CustomTextStyles.fontBlack620,
+          style: CustomTextStyles.fontBlack650,
         ),
       ),
     );

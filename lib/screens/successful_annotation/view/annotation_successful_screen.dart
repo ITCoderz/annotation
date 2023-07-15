@@ -50,7 +50,7 @@ class AnnotationSuccessfulScreen extends StatelessWidget {
                 40.ph,
                 const Text(
                   "Sikeres Annotacio",
-                  style: CustomTextStyles.fontBright650,
+                  style: CustomTextStyles.fontBright640,
                 ),
               ],
             ),

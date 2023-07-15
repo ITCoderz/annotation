@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import '../../../generated/assets.dart';
 import '../../../reusable_widgets/buttons/border_button.dart';
 import '../../../utils/text_styles/text_styles.dart';
-import '../../baby_incubator_state/view/baby_incubator__state_screen.dart';
+import '../../baby_incubator_state/view/baby_incubator_state_screen.dart';
 
 class SelectionScreen extends StatelessWidget {
   const SelectionScreen({super.key});
@@ -47,17 +47,17 @@ class SelectionScreen extends StatelessWidget {
                     ),
                     Text(
                       "A Kamera Azonositot",
-                      style: CustomTextStyles.fontBright650,
+                      style: CustomTextStyles.fontBright640,
                       textAlign: TextAlign.center,
                     ),
                     Text(
                       "A Csecsemo Azonositot",
-                      style: CustomTextStyles.fontBright650,
+                      style: CustomTextStyles.fontBright640,
                       textAlign: TextAlign.center,
                     ),
                     Text(
                       "Az Apolo Azonositot",
-                      style: CustomTextStyles.fontBright650,
+                      style: CustomTextStyles.fontBright640,
                       textAlign: TextAlign.center,
                     ),
                   ],

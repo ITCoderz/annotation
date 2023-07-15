@@ -7,7 +7,7 @@ import '../../utils/text_styles/text_styles.dart';
 class GridOptionTile extends StatelessWidget {
   final String optionImage, optionTitle;
   final Function()? onTapFunction;
-  final bool isWhatsHappeningScreen;
+  final bool isWhatsHappeningScreen, isBabyConditionScreen;
 
   const GridOptionTile({
     super.key,
@@ -15,6 +15,7 @@ class GridOptionTile extends StatelessWidget {
     required this.optionTitle,
     required this.onTapFunction,
     this.isWhatsHappeningScreen = false,
+    this.isBabyConditionScreen = false,
   });
 
   @override
@@ -22,8 +23,7 @@ class GridOptionTile extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        SizedBox(
-          height: 225,
+        Expanded(
           child: InkWell(
             onTap: onTapFunction,
             borderRadius: BorderRadius.circular(
@@ -47,12 +47,71 @@ class GridOptionTile extends StatelessWidget {
           ),
         ),
         5.ph,
-        Flexible(
+        FittedBox(
           child: Text(
             optionTitle,
             style: isWhatsHappeningScreen
-                ? CustomTextStyles.fontBright650
-                : CustomTextStyles.fontBright970,
+                ? CustomTextStyles.fontBright640
+                : isBabyConditionScreen
+                    ? CustomTextStyles.fontBright640
+                    : CustomTextStyles.fontBright970,
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class GridOptionBabyConditionTile extends StatelessWidget {
+  final String optionImage, optionTitle;
+  final Function()? onTapFunction;
+  final double? height, width;
+
+  const GridOptionBabyConditionTile({
+    super.key,
+    required this.optionImage,
+    required this.optionTitle,
+    required this.onTapFunction,
+    this.height,
+    this.width,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        SizedBox(
+          height: height,
+          width: width,
+          child: InkWell(
+            onTap: onTapFunction,
+            borderRadius: BorderRadius.circular(
+              20,
+            ),
+            child: Container(
+              padding: const EdgeInsets.symmetric(
+                vertical: 10,
+              ),
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: CColors.buttonDarkBackground,
+                borderRadius: BorderRadius.circular(
+                  40,
+                ),
+              ),
+              child: Image.asset(
+                optionImage,
+              ),
+            ),
+          ),
+        ),
+        5.ph,
+        Expanded(
+          child: Text(
+            optionTitle,
+            style: CustomTextStyles.fontBright630,
             textAlign: TextAlign.center,
           ),
         ),

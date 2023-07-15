@@ -3,18 +3,36 @@ class Assets {
   Assets._();
 
   static const String appIconAppIcon = 'assets/images/app_icon/app_icon.png';
+  static const String babyBehaviourActiveBruiseWhite = 'assets/images/dark_mode/baby_next_condition/baby_behaviour/active_bruise_white.png';
+  static const String babyBehaviourActiveSleeperWhite = 'assets/images/dark_mode/baby_next_condition/baby_behaviour/active_sleeper_white.png';
+  static const String babyBehaviourCryingWhite = 'assets/images/dark_mode/baby_next_condition/baby_behaviour/crying_white.png';
+  static const String babyBehaviourQuietSleeperWhite = 'assets/images/dark_mode/baby_next_condition/baby_behaviour/quiet_sleeper_white.png';
+  static const String babyBehaviourSilentRashWhite = 'assets/images/dark_mode/baby_next_condition/baby_behaviour/silent_rash_white.png';
+  static const String babyBehaviourTemporaryWhite = 'assets/images/dark_mode/baby_next_condition/baby_behaviour/temporary_white.png';
+  static const String babyNextConditionBabyNextConditionDarkBackground = 'assets/images/dark_mode/baby_next_condition/baby_next_condition_dark_background.png';
+  static const String babyVoiceAllWhite = 'assets/images/dark_mode/baby_next_condition/baby_voice/all_white.png';
+  static const String babyVoiceCryingWhite = 'assets/images/dark_mode/baby_next_condition/baby_voice/crying_white.png';
+  static const String babyVoiceNoEyesWhite = 'assets/images/dark_mode/baby_next_condition/baby_voice/no_eyes_white.png';
   static const String bemboBemboStd = 'assets/fonts/bembo/BemboStd.ttf';
   static const String bemboBemboStdBold = 'assets/fonts/bembo/BemboStd-Bold.ttf';
   static const String bemboBemboStdItalic = 'assets/fonts/bembo/BemboStd-Italic.ttf';
+  static const String breathingIrregularBreathingImageWhite = 'assets/images/dark_mode/baby_next_condition/breathing/irregular_breathing_image_white.png';
+  static const String breathingRegularBreathingWhiteImage = 'assets/images/dark_mode/baby_next_condition/breathing/regular_breathing_white_image.png';
+  static const String eyesEyesCannotSeeWhite = 'assets/images/dark_mode/baby_next_condition/eyes/eyes_cannot_see_white.png';
+  static const String eyesEyesClosedWhite = 'assets/images/dark_mode/baby_next_condition/eyes/eyes_closed_white.png';
+  static const String eyesEyesOpenWhite = 'assets/images/dark_mode/baby_next_condition/eyes/eyes_open_white.png';
   static const String incubatorImagesBabyInsideIncubatorWhite = 'assets/images/dark_mode/incubator_images/baby_inside_incubator_white.png';
   static const String incubatorImagesBabyOutsideIncubarWhite = 'assets/images/dark_mode/incubator_images/baby_outside_incubar_white.png';
   static const String landingScreenImagesLandingScreenLogo = 'assets/images/dark_mode/landing_screen_images/landing_screen_logo.png';
+  static const String movementInHandsWhite = 'assets/images/dark_mode/baby_next_condition/movement_in/hands_white.png';
+  static const String movementInLegsWhite = 'assets/images/dark_mode/baby_next_condition/movement_in/legs_white.png';
   static const String selectionScreenDarkImagesSelectionDarkBackgroundImage = 'assets/images/dark_mode/selection_screen_dark_images/selection_dark_background_image.png';
   static const String splashLogoAppSplashLogo = 'assets/images/dark_mode/splash_logo/app_splash_logo.png';
   static const String splashScreenBackgroundImageSplashScreenBackgroundImage = 'assets/images/dark_mode/splash_screen_background_image/splash_screen_background_image.png';
   static const String successAnnotationImageSuccessAnnotationImage = 'assets/images/dark_mode/success_annotation_image/success_annotation_image.png';
-  static const String whatsHappeingImagesNoneOfThemWhite = 'assets/images/dark_mode/whats_happeing_images/none_of_them_white.png';
-  static const String whatsHappeingImagesPainfullWhite = 'assets/images/dark_mode/whats_happeing_images/painfull_white.png';
-  static const String whatsHappeingImagesPainlessWhite = 'assets/images/dark_mode/whats_happeing_images/painless_white.png';
+  static const String whatsHappeningImagesNoneOfThemWhite = 'assets/images/dark_mode/whats_happening_images/none_of_them_white.png';
+  static const String whatsHappeningImagesPainfullWhite = 'assets/images/dark_mode/whats_happening_images/painfull_white.png';
+  static const String whatsHappeningImagesPainlessWhite = 'assets/images/dark_mode/whats_happening_images/painless_white.png';
+  static const String whatsHappeningImagesWhatsHappeningDarkBackground = 'assets/images/dark_mode/whats_happening_images/whats_happening_dark_background.png';
 
 }

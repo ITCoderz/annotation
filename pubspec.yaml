@@ -51,7 +51,13 @@ flutter:
     - assets/images/dark_mode/success_annotation_image/
     - assets/images/dark_mode/selection_screen_dark_images/
     - assets/images/dark_mode/incubator_images/
-    - assets/images/dark_mode/whats_happeing_images/
+    - assets/images/dark_mode/whats_happening_images/
+    - assets/images/dark_mode/baby_next_condition/
+    - assets/images/dark_mode/baby_next_condition/baby_behaviour/
+    - assets/images/dark_mode/baby_next_condition/movement_in/
+    - assets/images/dark_mode/baby_next_condition/baby_voice/
+    - assets/images/dark_mode/baby_next_condition/breathing/
+    - assets/images/dark_mode/baby_next_condition/eyes/
 
   fonts:
     - family: Bembo Std

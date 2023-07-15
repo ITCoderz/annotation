@@ -4,18 +4,24 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class BackContainerButton extends StatelessWidget {
-  const BackContainerButton({super.key});
+  final bool needSpaceFromLeft, needSpaceFromTop;
+
+  const BackContainerButton({
+    super.key,
+    this.needSpaceFromLeft = true,
+    this.needSpaceFromTop = true,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        30.ph,
+        needSpaceFromTop ? 30.ph : const SizedBox.shrink(),
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            20.pw,
+            needSpaceFromLeft ? 20.pw : const SizedBox.shrink(),
             InkWell(
               borderRadius: BorderRadius.circular(
                 10,

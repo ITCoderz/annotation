@@ -11,15 +11,21 @@ class CustomTextStyles {
     color: CColors.blackColor,
     fontFamily: 'Bembo Std',
   );
-  static const TextStyle fontBright550 = TextStyle(
+  static const TextStyle fontBright540 = TextStyle(
     fontWeight: FontWeight.w500,
     fontSize: 40,
     color: CColors.fontColorBrightBackground,
     fontFamily: 'Bembo Std',
   );
-  static const TextStyle fontBright650 = TextStyle(
+  static const TextStyle fontBright640 = TextStyle(
     fontWeight: FontWeight.w600,
     fontSize: 40,
+    color: CColors.fontColorBrightBackground,
+    fontFamily: 'Bembo Std',
+  );
+  static const TextStyle fontBright630 = TextStyle(
+    fontWeight: FontWeight.w600,
+    fontSize: 30,
     color: CColors.fontColorBrightBackground,
     fontFamily: 'Bembo Std',
   );
@@ -35,13 +41,13 @@ class CustomTextStyles {
     color: CColors.fontColorBrightBackground,
     fontFamily: 'Bembo Std',
   );
-  static const TextStyle fontDark620 = TextStyle(
+  static const TextStyle fontDark650 = TextStyle(
     fontWeight: FontWeight.w600,
     fontSize: 50,
     color: CColors.fontColorDarkBackground,
     fontFamily: 'Bembo Std',
   );
-  static const TextStyle fontBlack620 = TextStyle(
+  static const TextStyle fontBlack650 = TextStyle(
     fontWeight: FontWeight.w600,
     fontSize: 50,
     color: CColors.blackColor,

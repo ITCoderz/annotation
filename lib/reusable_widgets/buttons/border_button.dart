@@ -7,6 +7,7 @@ class CustomBorderedElevatedButton extends StatelessWidget {
   final Function()? onPressedFunction;
   final String buttonText;
   final double height, width;
+  final Color backgroundColor, borderColor;
 
   const CustomBorderedElevatedButton({
     super.key,
@@ -14,6 +15,8 @@ class CustomBorderedElevatedButton extends StatelessWidget {
     required this.buttonText,
     required this.width,
     this.height = 55,
+    this.borderColor = CColors.buttonDarkBackground,
+    this.backgroundColor = CColors.fontColorBrightBackground,
   });
 
   @override
@@ -25,10 +28,10 @@ class CustomBorderedElevatedButton extends StatelessWidget {
           width,
           height,
         ),
-        backgroundColor: CColors.fontColorBrightBackground,
+        backgroundColor: backgroundColor,
         shape: RoundedRectangleBorder(
-          side: const BorderSide(
-            color: CColors.buttonDarkBackground,
+          side: BorderSide(
+            color: borderColor,
             width: 12,
           ),
           borderRadius: BorderRadius.circular(

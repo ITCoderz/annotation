@@ -1,4 +1,3 @@
-
 import 'package:annotation/screens/splash_screen/view/splash_screen.dart';
 import 'package:annotation/utils/theme/theme_data.dart';
 import 'package:flutter/material.dart';
@@ -6,14 +5,13 @@ import 'package:get/get.dart';
 
 import 'bindings/initializing_dependency.dart';
 
-
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MyApp());
+  runApp(const AnnotationApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class AnnotationApp extends StatelessWidget {
+  const AnnotationApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +20,10 @@ class MyApp extends StatelessWidget {
       child: GetMaterialApp(
         initialBinding: InitializingDependency(),
         debugShowCheckedModeBanner: false,
-        title: 'Exoid',
+        title: 'Annotation',
         theme: CustomThemeData.lightViewTheme,
         home: const SplashScreen(),
       ),
     );
   }
 }
-

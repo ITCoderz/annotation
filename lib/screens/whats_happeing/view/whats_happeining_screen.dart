@@ -7,6 +7,7 @@ import '../../../generated/assets.dart';
 import '../../../reusable_widgets/buttons/back_button.dart';
 import '../../../reusable_widgets/option_widget/option_grid_widget.dart';
 import '../../../utils/text_styles/text_styles.dart';
+import '../../baby_next_condition/baby_next_condition_screen.dart';
 
 class WhatsHappeningScreen extends StatelessWidget {
   const WhatsHappeningScreen({super.key});
@@ -22,7 +23,7 @@ class WhatsHappeningScreen extends StatelessWidget {
           decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage(
-                Assets.selectionScreenDarkImagesSelectionDarkBackgroundImage,
+                Assets.whatsHappeningImagesWhatsHappeningDarkBackground,
               ),
               fit: BoxFit.fill,
             ),
@@ -33,20 +34,21 @@ class WhatsHappeningScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(
                   left: 18,
                 ),
-                height: context.height * 1,
+                height: context.height * 0.82,
                 width: context.width * 0.73,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    50.ph,
+                    80.ph,
                     const Text(
                       "Mi tortenik",
                       style: CustomTextStyles.fontBright970,
                       textAlign: TextAlign.center,
                     ),
-                    SizedBox(
-                      height: 320,
+                    50.ph,
+                    Expanded(
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisSize: MainAxisSize.min,
@@ -54,9 +56,14 @@ class WhatsHappeningScreen extends StatelessWidget {
                           Expanded(
                             child: GridOptionTile(
                               optionImage:
-                                  Assets.whatsHappeingImagesPainlessWhite,
+                                  Assets.whatsHappeningImagesPainlessWhite,
                               optionTitle: "Noninvaziv Apolas",
-                              onTapFunction: () {},
+                              onTapFunction: () {
+                                Get.to(
+                                  () => const BabyNextConditionScreen(),
+                                  transition: Transition.fadeIn,
+                                );
+                              },
                               isWhatsHappeningScreen: true,
                             ),
                           ),
@@ -64,24 +71,31 @@ class WhatsHappeningScreen extends StatelessWidget {
                           Expanded(
                             child: GridOptionTile(
                               optionImage:
-                                  Assets.whatsHappeingImagesPainfullWhite,
+                                  Assets.whatsHappeningImagesPainfullWhite,
                               optionTitle: "Invaziv Apolas",
-                              onTapFunction: () {},
+                              onTapFunction: () {
+                                Get.to(
+                                  () => const BabyNextConditionScreen(),
+                                  transition: Transition.fadeIn,
+                                );
+                              },
                               isWhatsHappeningScreen: true,
                             ),
                           ),
                         ],
                       ),
                     ),
-                    40.ph,
-                    SizedBox(
-                      height: 320,
-                      width: 320,
-                      child: GridOptionTile(
-                        optionImage: Assets.whatsHappeingImagesNoneOfThemWhite,
-                        optionTitle: "Egyik SEM",
-                        onTapFunction: () {},
-                        isWhatsHappeningScreen: true,
+                    50.ph,
+                    Expanded(
+                      child: SizedBox(
+                        width: 320,
+                        child: GridOptionTile(
+                          optionImage:
+                              Assets.whatsHappeningImagesNoneOfThemWhite,
+                          optionTitle: "Egyik SEM",
+                          onTapFunction: () {},
+                          isWhatsHappeningScreen: true,
+                        ),
                       ),
                     ),
                   ],

@@ -9,6 +9,7 @@ class SuccessfulAnnotationController extends GetxController {
       () {
         Get.offAll(
           () => const AnnotationLandingScreen(),
+          transition: Transition.fadeIn,
         );
       },
     );
