@@ -7,12 +7,14 @@ class CustomElevatedButton extends StatelessWidget {
   final Function()? onPressedFunction;
   final String buttonText;
   final double height, width;
+  final bool isDark;
 
   const CustomElevatedButton({
     super.key,
     required this.onPressedFunction,
     required this.buttonText,
     required this.width,
+    required this.isDark,
     this.height = 55,
   });
 
@@ -25,7 +27,9 @@ class CustomElevatedButton extends StatelessWidget {
           width,
           height,
         ),
-        backgroundColor: CColors.fontColorBrightBackground,
+        backgroundColor: isDark
+            ? CColors.fontColorBrightBackground
+            : CColors.topLefBrightButtonBackground,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(
           20,
@@ -34,7 +38,9 @@ class CustomElevatedButton extends StatelessWidget {
       child: FittedBox(
         child: Text(
           buttonText,
-          style: CustomTextStyles.fontBlack650,
+          style: isDark
+              ? CustomTextStyles.fontBlack650
+              : CustomTextStyles.fontLightButton650,
         ),
       ),
     );

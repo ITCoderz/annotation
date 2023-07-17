@@ -5,6 +5,39 @@ class ConstantLists {
   ConstantLists._();
 
   ///
+  static List<BabyIncubatorStateModelModel> babyIncubatorStateList = [
+    BabyIncubatorStateModelModel(
+      incubatorStateImage: Assets.incubatorImagesBabyInsideIncubatorWhite,
+      incubatorStateTitle: "Igen",
+      incubatorStateCode: "4.1",
+    ),
+    BabyIncubatorStateModelModel(
+      incubatorStateImage: Assets.incubatorImagesBabyOutsideIncubarWhite,
+      incubatorStateTitle: "Nem",
+      incubatorStateCode: "4.2",
+    ),
+  ];
+
+  ///
+  static List<WhatsHappeningModel> whatsHappeningList = [
+    WhatsHappeningModel(
+      whatsHappeningImage: Assets.whatsHappeningImagesPainlessWhite,
+      whatsHappeningTitle: "Noninvazív ápolás",
+      whatsHappeningCode: "5.1",
+    ),
+    WhatsHappeningModel(
+      whatsHappeningImage: Assets.whatsHappeningImagesPainfullWhite,
+      whatsHappeningTitle: "invazív ápolás",
+      whatsHappeningCode: "5.2",
+    ),
+    WhatsHappeningModel(
+      whatsHappeningImage: Assets.whatsHappeningImagesNoneOfThemWhite,
+      whatsHappeningTitle: "egyik sem",
+      whatsHappeningCode: "5.3",
+    ),
+  ];
+
+  ///
   static List<BabyBehaviourModel> babyBehaviourList = [
     BabyBehaviourModel(
       behaviourImage: Assets.babyBehaviourQuietSleeperWhite,

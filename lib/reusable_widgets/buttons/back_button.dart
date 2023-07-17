@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class BackContainerButton extends StatelessWidget {
-  final bool needSpaceFromLeft, needSpaceFromTop;
+  final bool needSpaceFromLeft, needSpaceFromTop, isDark;
 
   const BackContainerButton({
     super.key,
+    required this.isDark,
     this.needSpaceFromLeft = true,
     this.needSpaceFromTop = true,
   });
@@ -34,14 +35,18 @@ class BackContainerButton extends StatelessWidget {
                 height: 120,
                 width: 120,
                 decoration: BoxDecoration(
-                  color: CColors.buttonDarkBackground,
+                  color: isDark
+                      ? CColors.buttonDarkBackground
+                      : CColors.topLefBrightButtonBackground,
                   borderRadius: BorderRadius.circular(
                     40,
                   ),
                 ),
-                child: const Icon(
+                child:  Icon(
                   Icons.arrow_back_ios_new,
-                  color: CColors.fontColorBrightBackground,
+                  color: isDark
+                      ? CColors.fontColorBrightBackground
+                      : CColors.whiteColor,
                   size: 50,
                 ),
               ),

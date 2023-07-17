@@ -12,50 +12,60 @@ class AnnotationSuccessfulScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   final  annotationSuccessfulController =Get.find<SuccessfulAnnotationController>();
+    final annotationSuccessfulController =
+        Get.find<SuccessfulAnnotationController>();
     return Scaffold(
       body: SafeArea(
-        child: Container(
-          height: context.height * 1,
-          width: context.width * 1,
-          alignment: Alignment.center,
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(
-                Assets.splashScreenBackgroundImageSplashScreenBackgroundImage,
+        child: Obx(() {
+          return Container(
+            height: context.height * 1,
+            width: context.width * 1,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                  annotationSuccessfulController.isNightTime.value
+                      ? Assets
+                          .splashScreenBackgroundImageSplashScreenBackgroundImage
+                      : Assets.splashScreenSplashScreenLightModeBackground,
+                ),
+                fit: BoxFit.fill,
               ),
-              fit: BoxFit.fill,
             ),
-          ),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                100.ph,
-                Container(
-                  padding: const EdgeInsets.all(
-                    15,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  100.ph,
+                  Container(
+                    padding: const EdgeInsets.all(
+                      15,
+                    ),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: annotationSuccessfulController.isNightTime.value
+                          ? CColors.fontColorBrightBackground
+                          : CColors.topLefBrightButtonBackground,
+                    ),
+                    child: Image.asset(
+                      Assets.successAnnotationImageSuccessAnnotationImage,
+                      height: 350,
+                    ),
                   ),
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: CColors.fontColorBrightBackground,
+                  40.ph,
+                  Text(
+                    "Sikeres Annotacio",
+                    style: annotationSuccessfulController.isNightTime.value
+                        ? CustomTextStyles.fontBright860
+                        : CustomTextStyles.fontDark860,
                   ),
-                  child: Image.asset(
-                    Assets.successAnnotationImageSuccessAnnotationImage,
-                    height: 350,
-                  ),
-                ),
-                40.ph,
-                const Text(
-                  "Sikeres Annotacio",
-                  style: CustomTextStyles.fontBright640,
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ),
+          );
+        }),
       ),
     );
   }

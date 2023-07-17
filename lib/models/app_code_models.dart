@@ -1,3 +1,33 @@
+class SelectionModel {
+  String selectionTitle, selectionCode;
+
+  SelectionModel({
+    required this.selectionTitle,
+    required this.selectionCode,
+  });
+}
+
+class BabyIncubatorStateModelModel {
+  String incubatorStateImage, incubatorStateTitle, incubatorStateCode;
+
+  BabyIncubatorStateModelModel({
+    required this.incubatorStateImage,
+    required this.incubatorStateTitle,
+    required this.incubatorStateCode,
+  });
+}
+
+///
+class WhatsHappeningModel {
+  String whatsHappeningImage, whatsHappeningTitle, whatsHappeningCode;
+
+  WhatsHappeningModel({
+    required this.whatsHappeningImage,
+    required this.whatsHappeningTitle,
+    required this.whatsHappeningCode,
+  });
+}
+
 ///
 class BabyBehaviourModel {
   String behaviourImage, behaviourTitle, behaviourCode;
