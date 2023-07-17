@@ -77,7 +77,7 @@ class WhatsHappeningScreen extends StatelessWidget {
                                     .whatsHappeningList[0].whatsHappeningTitle,
                                 onTapFunction: () {
                                   whatsHappeningController
-                                      .setWhatsHappeningStateId(
+                                      .setWhatsHappeningStateIdAndNavigate(
                                     babyIncubatorStateId: babyIncubatorStateId,
                                     cameraId: cameraId,
                                     babyId: babyId,
@@ -101,7 +101,7 @@ class WhatsHappeningScreen extends StatelessWidget {
                                     .whatsHappeningList[1].whatsHappeningTitle,
                                 onTapFunction: () {
                                   whatsHappeningController
-                                      .setWhatsHappeningStateId(
+                                      .setWhatsHappeningStateIdAndNavigate(
                                     babyIncubatorStateId: babyIncubatorStateId,
                                     cameraId: cameraId,
                                     babyId: babyId,
@@ -129,7 +129,8 @@ class WhatsHappeningScreen extends StatelessWidget {
                             optionTitle: ConstantLists
                                 .whatsHappeningList[2].whatsHappeningTitle,
                             onTapFunction: () {
-                              whatsHappeningController.setWhatsHappeningStateId(
+                              whatsHappeningController
+                                  .setWhatsHappeningStateIdAndNavigate(
                                 babyIncubatorStateId: babyIncubatorStateId,
                                 cameraId: cameraId,
                                 babyId: babyId,

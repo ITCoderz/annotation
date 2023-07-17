@@ -1,3 +1,46 @@
+///
+class FifthOutputCodesModel {
+  String cameraId, babyId, nurseId, babyIncubatorStateId, whatsHappeningId;
+
+  FifthOutputCodesModel({
+    required this.cameraId,
+    required this.babyId,
+    required this.nurseId,
+    required this.babyIncubatorStateId,
+    required this.whatsHappeningId,
+  });
+}
+
+///
+class SixthOutputCodesModel {
+  String cameraId,
+      babyId,
+      nurseId,
+      babyIncubatorStateId,
+      whatsHappeningId,
+      behaviourCode,
+      babyVoiceCode,
+      babyMovementHandsCode,
+      babyMovementLegsCode,
+      babyBreathingCode,
+      eyeCode;
+
+  SixthOutputCodesModel({
+    required this.cameraId,
+    required this.babyId,
+    required this.nurseId,
+    required this.babyIncubatorStateId,
+    required this.whatsHappeningId,
+    required this.behaviourCode,
+    required this.babyVoiceCode,
+    required this.babyMovementHandsCode,
+    required this.babyMovementLegsCode,
+    required this.babyBreathingCode,
+    required this.eyeCode,
+  });
+}
+
+///
 class SelectionModel {
   String selectionTitle, selectionCode;
 
@@ -7,6 +50,7 @@ class SelectionModel {
   });
 }
 
+///
 class BabyIncubatorStateModelModel {
   String incubatorStateImage, incubatorStateTitle, incubatorStateCode;
 

@@ -76,7 +76,7 @@ class GridOptionBabyConditionTile extends StatelessWidget {
   final String optionImage, optionTitle;
   final Function()? onTapFunction;
   final double? height, width;
-  final bool isDark;
+  final bool isDark, isSelected;
 
   const GridOptionBabyConditionTile({
     super.key,
@@ -84,6 +84,7 @@ class GridOptionBabyConditionTile extends StatelessWidget {
     required this.optionTitle,
     required this.onTapFunction,
     required this.isDark,
+    required this.isSelected,
     this.height,
     this.width,
   });
@@ -107,10 +108,13 @@ class GridOptionBabyConditionTile extends StatelessWidget {
               ),
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: isDark
+                color: isDark && isSelected == false
                     ? CColors.buttonDarkBackground
-                    : CColors.buttonBrightBackground,
-                // : CColors.fontColorDarkBackground,
+                    : isDark && isSelected
+                        ? CColors.buttonBrightBackground
+                        : isDark == false && isSelected == true
+                            ? CColors.fontColorDarkBackground
+                            : CColors.buttonBrightBackground,
                 borderRadius: BorderRadius.circular(
                   40,
                 ),
@@ -125,8 +129,9 @@ class GridOptionBabyConditionTile extends StatelessWidget {
         Expanded(
           child: Text(
             optionTitle,
-            style:
-                isDark ? CustomTextStyles.fontBright630 : CustomTextStyles.fontDark630,
+            style: isDark
+                ? CustomTextStyles.fontBright630
+                : CustomTextStyles.fontDark630,
             textAlign: TextAlign.center,
           ),
         ),

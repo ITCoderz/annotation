@@ -1,3 +1,4 @@
+import 'package:annotation/models/app_code_models.dart';
 import 'package:annotation/screens/baby_next_condition/controller/baby_next_condition_controller.dart';
 import 'package:annotation/utils/gaps/gaps.dart';
 import 'package:flutter/material.dart';
@@ -12,19 +13,11 @@ import '../../../utils/constants/constant_lists.dart';
 import '../../successful_annotation/view/annotation_successful_screen.dart';
 
 class BabyNextConditionScreen extends StatelessWidget {
-  final String cameraId,
-      babyId,
-      nurseId,
-      babyIncubatorStateId,
-      whatsHappeningId;
+  final FifthOutputCodesModel fifthOutputCodesModel;
 
   const BabyNextConditionScreen({
     super.key,
-    required this.cameraId,
-    required this.babyId,
-    required this.nurseId,
-    required this.babyIncubatorStateId,
-    required this.whatsHappeningId,
+    required this.fifthOutputCodesModel,
   });
 
   @override
@@ -99,18 +92,31 @@ class BabyNextConditionScreen extends StatelessWidget {
                                         ConstantLists.babyBehaviourList.length;
                                     index++) ...[
                                   Expanded(
-                                    child: GridOptionBabyConditionTile(
-                                      optionImage: ConstantLists
-                                          .babyBehaviourList[index]
-                                          .behaviourImage,
-                                      optionTitle: ConstantLists
-                                          .babyBehaviourList[index]
-                                          .behaviourTitle,
-                                      onTapFunction: () {},
-                                      height: 150,
-                                      isDark: babyNextConditionController
-                                          .isNightTime.value,
-                                    ),
+                                    child: Obx(() {
+                                      return GridOptionBabyConditionTile(
+                                        optionImage: ConstantLists
+                                            .babyBehaviourList[index]
+                                            .behaviourImage,
+                                        optionTitle: ConstantLists
+                                            .babyBehaviourList[index]
+                                            .behaviourTitle,
+                                        onTapFunction: () {
+                                          babyNextConditionController
+                                              .setBehaviourCode(
+                                                  code: ConstantLists
+                                                      .babyBehaviourList[index]
+                                                      .behaviourCode);
+                                        },
+                                        height: 150,
+                                        isDark: babyNextConditionController
+                                            .isNightTime.value,
+                                        isSelected: babyNextConditionController
+                                                .behaviourCode.value ==
+                                            ConstantLists
+                                                .babyBehaviourList[index]
+                                                .behaviourCode,
+                                      );
+                                    }),
                                   ),
                                   index ==
                                           ConstantLists.babyBehaviourList.length
@@ -138,17 +144,29 @@ class BabyNextConditionScreen extends StatelessWidget {
                                     index < ConstantLists.babyVoiceList.length;
                                     index++) ...[
                                   Expanded(
-                                    child: GridOptionBabyConditionTile(
-                                      optionImage: ConstantLists
-                                          .babyVoiceList[index].voiceImage,
-                                      optionTitle: ConstantLists
-                                          .babyVoiceList[index].voiceTitle,
-                                      onTapFunction: () {},
-                                      height: 150,
-                                      width: 160,
-                                      isDark: babyNextConditionController
-                                          .isNightTime.value,
-                                    ),
+                                    child: Obx(() {
+                                      return GridOptionBabyConditionTile(
+                                        optionImage: ConstantLists
+                                            .babyVoiceList[index].voiceImage,
+                                        optionTitle: ConstantLists
+                                            .babyVoiceList[index].voiceTitle,
+                                        onTapFunction: () {
+                                          babyNextConditionController
+                                              .setVoiceCode(
+                                            code: ConstantLists
+                                                .babyVoiceList[index].voiceCode,
+                                          );
+                                        },
+                                        height: 150,
+                                        width: 160,
+                                        isDark: babyNextConditionController
+                                            .isNightTime.value,
+                                        isSelected: babyNextConditionController
+                                                .babyVoiceCode.value ==
+                                            ConstantLists
+                                                .babyVoiceList[index].voiceCode,
+                                      );
+                                    }),
                                   ),
                                 ],
                               ],
@@ -180,18 +198,49 @@ class BabyNextConditionScreen extends StatelessWidget {
                                                 ConstantLists
                                                     .movementInList.length;
                                             index++) ...[
-                                          GridOptionBabyConditionTile(
-                                            optionImage: ConstantLists
-                                                .movementInList[index]
-                                                .movementInImage,
-                                            optionTitle: ConstantLists
-                                                .movementInList[index]
-                                                .movementInTitle,
-                                            onTapFunction: () {},
-                                            height: 150,
-                                            isDark: babyNextConditionController
-                                                .isNightTime.value,
-                                          ),
+                                          Obx(() {
+                                            return GridOptionBabyConditionTile(
+                                              optionImage: ConstantLists
+                                                  .movementInList[index]
+                                                  .movementInImage,
+                                              optionTitle: ConstantLists
+                                                  .movementInList[index]
+                                                  .movementInTitle,
+                                              onTapFunction: () {
+                                                if (index == 0) {
+                                                  babyNextConditionController
+                                                      .setHandMovementCode(
+                                                    code: ConstantLists
+                                                        .movementInList[0]
+                                                        .movementInCode,
+                                                  );
+                                                } else {
+                                                  babyNextConditionController
+                                                      .setLegMovementCode(
+                                                          code: ConstantLists
+                                                              .movementInList[1]
+                                                              .movementInCode);
+                                                }
+                                              },
+                                              height: 150,
+                                              isDark:
+                                                  babyNextConditionController
+                                                      .isNightTime.value,
+                                              isSelected: index == 0
+                                                  ? babyNextConditionController
+                                                          .babyMovementHandsCode
+                                                          .value ==
+                                                      ConstantLists
+                                                          .movementInList[0]
+                                                          .movementInCode
+                                                  : babyNextConditionController
+                                                          .babyMovementLegsCode
+                                                          .value ==
+                                                      ConstantLists
+                                                          .movementInList[1]
+                                                          .movementInCode,
+                                            );
+                                          }),
                                           index ==
                                                   ConstantLists
                                                       .movementInList.length
@@ -225,18 +274,35 @@ class BabyNextConditionScreen extends StatelessWidget {
                                                 ConstantLists
                                                     .breathingList.length;
                                             index++) ...[
-                                          GridOptionBabyConditionTile(
-                                            optionImage: ConstantLists
-                                                .breathingList[index]
-                                                .breathingImage,
-                                            optionTitle: ConstantLists
-                                                .breathingList[index]
-                                                .breathingTitle,
-                                            onTapFunction: () {},
-                                            height: 150,
-                                            isDark: babyNextConditionController
-                                                .isNightTime.value,
-                                          ),
+                                          Obx(() {
+                                            return GridOptionBabyConditionTile(
+                                              optionImage: ConstantLists
+                                                  .breathingList[index]
+                                                  .breathingImage,
+                                              optionTitle: ConstantLists
+                                                  .breathingList[index]
+                                                  .breathingTitle,
+                                              onTapFunction: () {
+                                                babyNextConditionController
+                                                    .setBreathingCode(
+                                                  code: ConstantLists
+                                                      .breathingList[index]
+                                                      .breathingCode,
+                                                );
+                                              },
+                                              height: 150,
+                                              isDark:
+                                                  babyNextConditionController
+                                                      .isNightTime.value,
+                                              isSelected:
+                                                  babyNextConditionController
+                                                          .babyBreathingCode
+                                                          .value ==
+                                                      ConstantLists
+                                                          .breathingList[index]
+                                                          .breathingCode,
+                                            );
+                                          }),
                                           index ==
                                                   ConstantLists
                                                       .breathingList.length
@@ -279,18 +345,35 @@ class BabyNextConditionScreen extends StatelessWidget {
                                                         .eyeList.length;
                                                 index++) ...[
                                               Expanded(
-                                                child:
-                                                    GridOptionBabyConditionTile(
-                                                  optionImage: ConstantLists
-                                                      .eyeList[index].eyeImage,
-                                                  optionTitle: ConstantLists
-                                                      .eyeList[index].eyeTitle,
-                                                  onTapFunction: () {},
-                                                  height: 150,
-                                                  isDark:
+                                                child: Obx(() {
+                                                  return GridOptionBabyConditionTile(
+                                                    optionImage: ConstantLists
+                                                        .eyeList[index]
+                                                        .eyeImage,
+                                                    optionTitle: ConstantLists
+                                                        .eyeList[index]
+                                                        .eyeTitle,
+                                                    onTapFunction: () {
                                                       babyNextConditionController
-                                                          .isNightTime.value,
-                                                ),
+                                                          .setEyeCode(
+                                                        code: ConstantLists
+                                                            .eyeList[index]
+                                                            .eyeCode,
+                                                      );
+                                                    },
+                                                    height: 150,
+                                                    isDark:
+                                                        babyNextConditionController
+                                                            .isNightTime.value,
+                                                    isSelected:
+                                                        babyNextConditionController
+                                                                .eyeCode
+                                                                .value ==
+                                                            ConstantLists
+                                                                .eyeList[index]
+                                                                .eyeCode,
+                                                  );
+                                                }),
                                               ),
                                               index ==
                                                       ConstantLists
@@ -308,9 +391,10 @@ class BabyNextConditionScreen extends StatelessWidget {
                                 Expanded(
                                   child: CustomBorderedElevatedButton(
                                     onPressedFunction: () {
-                                      Get.offAll(
-                                        () => const AnnotationSuccessfulScreen(),
-                                        transition: Transition.fadeIn,
+                                      babyNextConditionController
+                                          .setAllBabyCodesAndNavigateValues(
+                                        fifthOutputCodesModel:
+                                            fifthOutputCodesModel,
                                       );
                                     },
                                     buttonText: "Mentis",

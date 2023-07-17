@@ -4,16 +4,34 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../generated/assets.dart';
+import '../../../models/app_code_models.dart';
 import '../../../utils/colors/app_colors.dart';
 import '../controller/successful_annotation_controller.dart';
 
 class AnnotationSuccessfulScreen extends StatelessWidget {
-  const AnnotationSuccessfulScreen({super.key});
+  final bool? isFiveOutput;
+  final FifthOutputCodesModel? fifthOutputCodesModel;
+  final SixthOutputCodesModel? sixthOutputCodesModel;
+
+  const AnnotationSuccessfulScreen({
+    super.key,
+    this.isFiveOutput,
+    this.fifthOutputCodesModel,
+    this.sixthOutputCodesModel,
+  });
 
   @override
   Widget build(BuildContext context) {
     final annotationSuccessfulController =
         Get.find<SuccessfulAnnotationController>();
+    if (isFiveOutput!=null) {
+      annotationSuccessfulController.isFromFifthOutputFunction(
+        fifthOutputCodesModel: fifthOutputCodesModel!,
+      );
+    } else {
+      annotationSuccessfulController.isFromSixthOutputFunction(
+          sixthOutputCodesModel: sixthOutputCodesModel!);
+    }
     return Scaffold(
       body: SafeArea(
         child: Obx(() {
