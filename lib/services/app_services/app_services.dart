@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'dart:developer';
+import 'package:flutter/material.dart';
 import 'package:web_socket_channel/status.dart' as status;
 import 'package:web_socket_channel/web_socket_channel.dart';
 
@@ -48,19 +48,21 @@ class AppServices {
       var channel = WebSocketChannel.connect(wsUrl);
       channel.stream.listen(
         (message) {
-          log("<==============================================================>");
-          log('Received message: $message');
-          log("<==============================================================>");
+          debugPrint(
+              "<==============================================================>");
+          debugPrint('Received message: $message');
+          debugPrint(
+              "<==============================================================>");
         },
         onDone: () {
-          log("<=========================>");
-          log('WebSocket Channel Closed');
-          log("<=========================>");
+          debugPrint("<=========================>");
+          debugPrint('WebSocket Channel Closed');
+          debugPrint("<=========================>");
         },
         onError: (error) {
-          log("<==========================>");
-          log('WebSocket Server Not Found');
-          log("<==========================>");
+          debugPrint("<==========================>");
+          debugPrint('WebSocket Server Not Found');
+          debugPrint("<==========================>");
         },
       );
       channel.sink.add(output);
@@ -68,7 +70,9 @@ class AppServices {
 
       return true;
     } catch (e) {
-      log(e.toString());
+      debugPrint("<===============Inside Catch===============>");
+      debugPrint(e.toString());
+      debugPrint("<==========================================>");
       return false;
     }
   }
@@ -85,19 +89,21 @@ class AppServices {
       var channel = WebSocketChannel.connect(wsUrl);
       channel.stream.listen(
         (message) {
-          log("<==============================================================>");
-          log('Received message: $message');
-          log("<==============================================================>");
+          debugPrint(
+              "<==============================================================>");
+          debugPrint('Received message: $message');
+          debugPrint(
+              "<==============================================================>");
         },
         onDone: () {
-          log("<=========================>");
-          log('WebSocket Channel Closed');
-          log("<=========================>");
+          debugPrint("<=========================>");
+          debugPrint('WebSocket Channel Closed');
+          debugPrint("<=========================>");
         },
         onError: (error) {
-          log("<==========================>");
-          log('WebSocket Server Not Found');
-          log("<==========================>");
+          debugPrint("<==========================>");
+          debugPrint('WebSocket Server Not Found');
+          debugPrint("<==========================>");
         },
       );
       channel.sink.add(output);
@@ -105,7 +111,9 @@ class AppServices {
 
       return true;
     } catch (e) {
-      log(e.toString());
+      debugPrint("<===============Inside Catch===============>");
+      debugPrint(e.toString());
+      debugPrint("<==========================================>");
       return false;
     }
   }
