@@ -6,7 +6,9 @@ import 'package:get/get.dart';
 
 import '../../../generated/assets.dart';
 import '../../../reusable_widgets/buttons/border_button.dart';
+import '../../../reusable_widgets/custom_alert_dialog.dart';
 import '../../../reusable_widgets/custom_dropdown.dart';
+import '../../../reusable_widgets/settings_menu.dart';
 import '../../../utils/text_styles/text_styles.dart';
 import '../controller/selection_controller.dart';
 
@@ -65,15 +67,17 @@ class SelectionScreen extends StatelessWidget {
                           textAlign: TextAlign.center,
                         ),
                         20.ph,
-                        CustomDropDown(
-                          width: 180,
-                          onChanged: (val) {
-                            selectionController.assignCameraId(id: val!);
-                          },
-                          hintText: "...",
-                          mappingList: ConstantLists.cameraIdList,
-                          isDark: selectionController.isNightTime.value,
-                        ),
+                        Obx(() {
+                          return CustomDropDown(
+                            width: 180,
+                            onChanged: (val) {
+                              selectionController.assignCameraId(id: val!);
+                            },
+                            hintText: "...",
+                            mappingList: selectionController.cameraIdList,
+                            isDark: selectionController.isNightTime.value,
+                          );
+                        }),
                         20.ph,
                         Text(
                           "A Csecsemo Azonositot",
@@ -83,15 +87,17 @@ class SelectionScreen extends StatelessWidget {
                           textAlign: TextAlign.center,
                         ),
                         20.ph,
-                        CustomDropDown(
-                          width: 180,
-                          onChanged: (val) {
-                            selectionController.assignBabyId(id: val!);
-                          },
-                          hintText: "...",
-                          mappingList: ConstantLists.babyIdList,
-                          isDark: selectionController.isNightTime.value,
-                        ),
+                        Obx(() {
+                          return CustomDropDown(
+                            width: 180,
+                            onChanged: (val) {
+                              selectionController.assignBabyId(id: val!);
+                            },
+                            hintText: "...",
+                            mappingList: selectionController.babyIdList,
+                            isDark: selectionController.isNightTime.value,
+                          );
+                        }),
                         20.ph,
                         Text(
                           "Az Apolo Azonositot",
@@ -101,15 +107,17 @@ class SelectionScreen extends StatelessWidget {
                           textAlign: TextAlign.center,
                         ),
                         20.ph,
-                        CustomDropDown(
-                          width: 180,
-                          onChanged: (val) {
-                            selectionController.assignNurseId(id: val!);
-                          },
-                          hintText: "...",
-                          mappingList: ConstantLists.nursesIdList,
-                          isDark: selectionController.isNightTime.value,
-                        ),
+                        Obx(() {
+                          return CustomDropDown(
+                            width: 180,
+                            onChanged: (val) {
+                              selectionController.assignNurseId(id: val!);
+                            },
+                            hintText: "...",
+                            mappingList: selectionController.nurseIdList,
+                            isDark: selectionController.isNightTime.value,
+                          );
+                        }),
                       ],
                     ),
                   ),
@@ -132,6 +140,95 @@ class SelectionScreen extends StatelessWidget {
                   ],
                 ).alignWidget(
                   alignment: Alignment.bottomCenter,
+                ),
+                SettingsMenu(
+                  addCameraIdFunction: () {
+                    Future.delayed(
+                      const Duration(
+                        seconds: 0,
+                      ),
+                      () {
+                        showDialog(
+                          context: context,
+                          builder: (context) => CustomAlertDialog(
+                            formKey: selectionController.cameraFormKey,
+                            isDark: selectionController.isNightTime.value,
+                            textEditingController:
+                                selectionController.cameraIdTextController,
+                            saveFunction: () {
+                              selectionController.saveCameraIdInStorage();
+                            },
+                            validatorFunction: (val) {
+                              if (val!.isNotEmpty) {
+                                return null;
+                              } else {
+                                return "Kérjük, írjon be egy szöveget";
+                              }
+                            },
+                          ),
+                        );
+                      },
+                    );
+                  },
+                  addBabyIdFunction: () {
+                    Future.delayed(
+                      const Duration(
+                        seconds: 0,
+                      ),
+                      () {
+                        showDialog(
+                          context: context,
+                          builder: (context) => CustomAlertDialog(
+                            formKey: selectionController.babyFormKey,
+                            isDark: selectionController.isNightTime.value,
+                            textEditingController:
+                                selectionController.babyIdTextController,
+                            saveFunction: () {
+                              selectionController.saveBabyIdInStorage();
+                            },
+                            validatorFunction: (val) {
+                              if (val!.isNotEmpty) {
+                                return null;
+                              } else {
+                                return "Kérjük, írjon be egy szöveget";
+                              }
+                            },
+                          ),
+                        );
+                      },
+                    );
+                  },
+                  addNurseIdFunction: () {
+                    Future.delayed(
+                      const Duration(
+                        seconds: 0,
+                      ),
+                      () {
+                        showDialog(
+                          context: context,
+                          builder: (context) => CustomAlertDialog(
+                            formKey: selectionController.nurseFormKey,
+                            isDark: selectionController.isNightTime.value,
+                            textEditingController:
+                                selectionController.nurseIdTextController,
+                            saveFunction: () {
+                              selectionController.saveNurseIdInStorage();
+                            },
+                            validatorFunction: (val) {
+                              if (val!.isNotEmpty) {
+                                return null;
+                              } else {
+                                return "Kérjük, írjon be egy szöveget";
+                              }
+                            },
+                          ),
+                        );
+                      },
+                    );
+                  },
+                  isDark: selectionController.isNightTime.value,
+                ).alignWidget(
+                  alignment: Alignment.topRight,
                 ),
               ],
             ),

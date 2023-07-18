@@ -5,7 +5,7 @@ import '../colors/app_colors.dart';
 class CustomTextStyles {
   CustomTextStyles._();
 
-  static const TextStyle mBlack450 = TextStyle(
+  static const TextStyle black450 = TextStyle(
     fontWeight: FontWeight.w400,
     fontSize: 50,
     color: CColors.blackColor,
@@ -17,10 +17,28 @@ class CustomTextStyles {
     color: CColors.fontColorBrightBackground,
     fontFamily: 'Bembo Std',
   );
+  static const TextStyle bright530 = TextStyle(
+    fontWeight: FontWeight.w500,
+    fontSize: 30,
+    color: CColors.fontColorBrightBackground,
+    fontFamily: 'Bembo Std',
+  );
+  static const TextStyle fontDark530 = TextStyle(
+    fontWeight: FontWeight.w500,
+    fontSize: 30,
+    color: CColors.fontColorDarkBackground,
+    fontFamily: 'Bembo Std',
+  );
   static const TextStyle fontBright640 = TextStyle(
     fontWeight: FontWeight.w600,
     fontSize: 40,
     color: CColors.fontColorBrightBackground,
+    fontFamily: 'Bembo Std',
+  );
+  static const TextStyle errorStyle520 = TextStyle(
+    fontWeight: FontWeight.w500,
+    fontSize: 20,
+    color: Colors.red,
     fontFamily: 'Bembo Std',
   );
   static const TextStyle fontDark640 = TextStyle(
@@ -46,7 +64,8 @@ class CustomTextStyles {
     fontSize: 60,
     color: CColors.fontColorBrightBackground,
     fontFamily: 'Bembo Std',
-  );static const TextStyle fontDark860 = TextStyle(
+  );
+  static const TextStyle fontDark860 = TextStyle(
     fontWeight: FontWeight.w800,
     fontSize: 60,
     color: CColors.fontColorDarkBackground,

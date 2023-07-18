@@ -62,7 +62,7 @@ class SplashScreen extends StatelessWidget {
                     children: <TextSpan>[
                       TextSpan(
                         text: "MTA ",
-                        style: CustomTextStyles.mBlack450,
+                        style: CustomTextStyles.black450,
                       ),
                       TextSpan(
                         text: "SZTAKI",
