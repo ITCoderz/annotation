@@ -5,6 +5,33 @@ class ConstantLists {
   ConstantLists._();
 
   ///
+  static const List<String> babyIdList = [
+    '00AA',
+    '10AA',
+    '20AA',
+    '30AA',
+    '40AA',
+    '50AA'
+  ];
+
+  ///
+  static const List<String> nursesIdList = [
+    'Főoldal',
+    'Annotálás',
+    'Segítség',
+  ];
+
+  ///
+  static const List<String> cameraIdList = [
+    'bagoly',
+    'béka',
+    'sün',
+    'túkán',
+    'fa',
+    'vörösmókus'
+  ];
+
+  ///
   static List<BabyIncubatorStateModelModel> babyIncubatorStateList = [
     BabyIncubatorStateModelModel(
       incubatorStateImage: Assets.incubatorImagesBabyInsideIncubatorWhite,

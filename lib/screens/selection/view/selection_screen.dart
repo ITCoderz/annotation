@@ -1,4 +1,5 @@
 import 'package:annotation/utils/alignment/widget_alignment.dart';
+import 'package:annotation/utils/constants/constant_lists.dart';
 import 'package:annotation/utils/gaps/gaps.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -70,14 +71,7 @@ class SelectionScreen extends StatelessWidget {
                             selectionController.assignCameraId(id: val!);
                           },
                           hintText: "...",
-                          mappingList: const [
-                            "3.11",
-                            "3.12",
-                            "3.13",
-                            "3.14",
-                            "3.15",
-                            "3.16",
-                          ],
+                          mappingList: ConstantLists.cameraIdList,
                           isDark: selectionController.isNightTime.value,
                         ),
                         20.ph,
@@ -95,14 +89,7 @@ class SelectionScreen extends StatelessWidget {
                             selectionController.assignBabyId(id: val!);
                           },
                           hintText: "...",
-                          mappingList: const [
-                            "3.21",
-                            "3.22",
-                            "3.23",
-                            "3.24",
-                            "3.25",
-                            "3.26",
-                          ],
+                          mappingList: ConstantLists.babyIdList,
                           isDark: selectionController.isNightTime.value,
                         ),
                         20.ph,
@@ -120,14 +107,7 @@ class SelectionScreen extends StatelessWidget {
                             selectionController.assignNurseId(id: val!);
                           },
                           hintText: "...",
-                          mappingList: const [
-                            "3.31",
-                            "3.32",
-                            "3.33",
-                            "3.34",
-                            "3.35",
-                            "3.36",
-                          ],
+                          mappingList: ConstantLists.nursesIdList,
                           isDark: selectionController.isNightTime.value,
                         ),
                       ],

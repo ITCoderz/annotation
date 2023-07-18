@@ -1,3 +1,4 @@
+import 'package:annotation/screens/successful_annotation/view/annotation_successful_screen.dart';
 import 'package:annotation/screens/whats_happening/controller/whats_happening_controller.dart';
 import 'package:annotation/utils/alignment/widget_alignment.dart';
 import 'package:annotation/utils/constants/constant_lists.dart';
@@ -6,7 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../generated/assets.dart';
+import '../../../models/app_code_models.dart';
 import '../../../reusable_widgets/buttons/back_button.dart';
+import '../../../reusable_widgets/buttons/send_button.dart';
 import '../../../reusable_widgets/option_widget/option_grid_widget.dart';
 import '../../../utils/text_styles/text_styles.dart';
 
@@ -153,6 +156,26 @@ class WhatsHappeningScreen extends StatelessWidget {
                   isDark: whatsHappeningController.isNightTime.value,
                 ).alignWidget(
                   alignment: Alignment.topLeft,
+                ),
+                SendButton(
+                  isDark: whatsHappeningController.isNightTime.value,
+                  onTapFunction: () {
+                    Get.offAll(
+                      () => AnnotationSuccessfulScreen(
+                        isFiveOutput: true,
+                        fifthOutputCodesModel: FifthOutputCodesModel(
+                          cameraId: cameraId,
+                          babyId: babyId,
+                          nurseId: nurseId,
+                          babyIncubatorStateId: babyIncubatorStateId,
+                          whatsHappeningId: "5.0",
+                        ),
+                      ),
+                      transition: Transition.fadeIn,
+                    );
+                  },
+                ).alignWidget(
+                  alignment: Alignment.topRight,
                 ),
               ],
             ),

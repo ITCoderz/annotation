@@ -1,16 +1,18 @@
-import 'package:annotation/utils/colors/app_colors.dart';
 import 'package:annotation/utils/gaps/gaps.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-class BackContainerButton extends StatelessWidget {
-  final bool needSpaceFromLeft, needSpaceFromTop, isDark;
+import '../../utils/colors/app_colors.dart';
 
-  const BackContainerButton({
+class SendButton extends StatelessWidget {
+  final bool needSpaceFromRight, needSpaceFromTop, isDark;
+  final Function()? onTapFunction;
+
+  const SendButton({
     super.key,
     required this.isDark,
-    this.needSpaceFromLeft = true,
+    this.needSpaceFromRight = true,
     this.needSpaceFromTop = true,
+    required this.onTapFunction,
   });
 
   @override
@@ -22,14 +24,11 @@ class BackContainerButton extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            needSpaceFromLeft ? 20.pw : const SizedBox.shrink(),
             InkWell(
               borderRadius: BorderRadius.circular(
                 10,
               ),
-              onTap: () {
-                Get.back();
-              },
+              onTap: onTapFunction,
               child: Container(
                 alignment: Alignment.center,
                 height: 120,
@@ -43,7 +42,7 @@ class BackContainerButton extends StatelessWidget {
                   ),
                 ),
                 child: Icon(
-                  Icons.arrow_back_ios_new,
+                  Icons.send,
                   color: isDark
                       ? CColors.fontColorBrightBackground
                       : CColors.whiteColor,
@@ -51,6 +50,7 @@ class BackContainerButton extends StatelessWidget {
                 ),
               ),
             ),
+            needSpaceFromRight ? 20.pw : const SizedBox.shrink(),
           ],
         ),
       ],

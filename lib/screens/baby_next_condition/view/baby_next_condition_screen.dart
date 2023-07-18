@@ -10,7 +10,6 @@ import '../../../../reusable_widgets/option_widget/option_grid_widget.dart';
 import '../../../../utils/text_styles/text_styles.dart';
 import '../../../reusable_widgets/buttons/border_button.dart';
 import '../../../utils/constants/constant_lists.dart';
-import '../../successful_annotation/view/annotation_successful_screen.dart';
 
 class BabyNextConditionScreen extends StatelessWidget {
   final FifthOutputCodesModel fifthOutputCodesModel;
