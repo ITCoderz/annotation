@@ -9,29 +9,21 @@ import '../../../utils/colors/app_colors.dart';
 import '../controller/successful_annotation_controller.dart';
 
 class AnnotationSuccessfulScreen extends StatelessWidget {
-  final bool? isFiveOutput;
-  final FifthOutputCodesModel? fifthOutputCodesModel;
-  final SixthOutputCodesModel? sixthOutputCodesModel;
+  final OutputCodesModel codesModel;
 
   const AnnotationSuccessfulScreen({
     super.key,
-    this.isFiveOutput,
-    this.fifthOutputCodesModel,
-    this.sixthOutputCodesModel,
+    required this.codesModel,
   });
 
   @override
   Widget build(BuildContext context) {
     final annotationSuccessfulController =
         Get.find<SuccessfulAnnotationController>();
-    if (isFiveOutput!=null) {
-      annotationSuccessfulController.isFromFifthOutputFunction(
-        fifthOutputCodesModel: fifthOutputCodesModel!,
-      );
-    } else {
-      annotationSuccessfulController.isFromSixthOutputFunction(
-          sixthOutputCodesModel: sixthOutputCodesModel!);
-    }
+    annotationSuccessfulController.outputFunction(
+      outputCodesModel: codesModel,
+    );
+
     return Scaffold(
       body: SafeArea(
         child: Obx(() {

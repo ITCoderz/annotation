@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../services/app_services/app_services.dart';
+import '../../../utils/colors/app_colors.dart';
 import '../../../utils/constants/constant_strings.dart';
 import '../../baby_incubator_state/view/baby_incubator_state_screen.dart';
 
@@ -45,14 +46,21 @@ class SelectionController extends GetxController {
     if (cameraFormKey.currentState!.validate()) {
       List<String> tempList =
           (prefs.getStringList(ConstantStrings.cameraIdList) ?? []);
+      if (tempList.contains(cameraIdTextController.text)) {
+        Get.snackbar(
+          "nem sikerült",
+          "Az azonosító már létezik, kérjük, adjon meg másik azonosítót",
+          backgroundColor: CColors.whiteColor,
+        );
+      } else {
+        tempList.add(cameraIdTextController.text);
 
-      tempList.add(cameraIdTextController.text);
-
-      await prefs.setStringList(ConstantStrings.cameraIdList, tempList);
-      cameraIdList.value =
-          (prefs.getStringList(ConstantStrings.cameraIdList) ?? []);
-      cameraIdTextController.clear();
-      Get.back();
+        await prefs.setStringList(ConstantStrings.cameraIdList, tempList);
+        cameraIdList.value =
+            (prefs.getStringList(ConstantStrings.cameraIdList) ?? []);
+        cameraIdTextController.clear();
+        Get.back();
+      }
     }
   }
 
@@ -60,14 +68,21 @@ class SelectionController extends GetxController {
     if (babyFormKey.currentState!.validate()) {
       List<String> tempList =
           (prefs.getStringList(ConstantStrings.babyIdList) ?? []);
+      if (tempList.contains(babyIdTextController.text)) {
+        Get.snackbar(
+          "nem sikerült",
+          "Az azonosító már létezik, kérjük, adjon meg másik azonosítót",
+          backgroundColor: CColors.whiteColor,
+        );
+      } else {
+        tempList.add(babyIdTextController.text);
 
-      tempList.add(babyIdTextController.text);
-
-      await prefs.setStringList(ConstantStrings.babyIdList, tempList);
-      babyIdList.value =
-          (prefs.getStringList(ConstantStrings.babyIdList) ?? []);
-      babyIdTextController.clear();
-      Get.back();
+        await prefs.setStringList(ConstantStrings.babyIdList, tempList);
+        babyIdList.value =
+            (prefs.getStringList(ConstantStrings.babyIdList) ?? []);
+        babyIdTextController.clear();
+        Get.back();
+      }
     }
   }
 
@@ -75,14 +90,21 @@ class SelectionController extends GetxController {
     if (nurseFormKey.currentState!.validate()) {
       List<String> tempList =
           (prefs.getStringList(ConstantStrings.nurseIdList) ?? []);
+      if (tempList.contains(nurseIdTextController.text)) {
+        Get.snackbar(
+          "nem sikerült",
+          "Az azonosító már létezik, kérjük, adjon meg másik azonosítót",
+          backgroundColor: CColors.whiteColor,
+        );
+      } else {
+        tempList.add(nurseIdTextController.text);
 
-      tempList.add(nurseIdTextController.text);
-
-      await prefs.setStringList(ConstantStrings.nurseIdList, tempList);
-      nurseIdList.value =
-          (prefs.getStringList(ConstantStrings.nurseIdList) ?? []);
-      nurseIdTextController.clear();
-      Get.back();
+        await prefs.setStringList(ConstantStrings.nurseIdList, tempList);
+        nurseIdList.value =
+            (prefs.getStringList(ConstantStrings.nurseIdList) ?? []);
+        nurseIdTextController.clear();
+        Get.back();
+      }
     }
   }
 

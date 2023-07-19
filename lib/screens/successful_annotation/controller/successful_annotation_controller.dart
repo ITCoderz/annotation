@@ -12,30 +12,10 @@ class SuccessfulAnnotationController extends GetxController {
     super.onInit();
   }
 
-  isFromFifthOutputFunction(
-      {required FifthOutputCodesModel fifthOutputCodesModel}) async {
+  outputFunction({required OutputCodesModel outputCodesModel}) async {
     bool status;
-    status = await AppServices.fifthOutputService(
-      fifthOutputCodesModel: fifthOutputCodesModel,
-    );
-    if (status) {
-      Future.delayed(
-        const Duration(milliseconds: 3000),
-        () {
-          Get.offAll(
-            () => const AnnotationLandingScreen(),
-            transition: Transition.fadeIn,
-          );
-        },
-      );
-    } else {}
-  }
-
-  isFromSixthOutputFunction(
-      {required SixthOutputCodesModel sixthOutputCodesModel}) async {
-    bool status;
-    status = await AppServices.sixthOutputService(
-      sixthOutputCodesModel: sixthOutputCodesModel,
+    status = await AppServices.outputService(
+      outputCodesModel: outputCodesModel,
     );
     if (status) {
       Future.delayed(

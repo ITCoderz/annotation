@@ -13,6 +13,7 @@ class BabyNextConditionController extends GetxController {
 
   final babyBreathingCode = "6.40".obs;
   final eyeCode = "6.50".obs;
+  String babyMovementCode = "6.30";
 
   setBehaviourCode({required String code}) {
     if (behaviourCode.value == code) {
@@ -72,7 +73,20 @@ class BabyNextConditionController extends GetxController {
   setAllBabyCodesAndNavigateValues({
     required FifthOutputCodesModel fifthOutputCodesModel,
   }) {
-    SixthOutputCodesModel sixthOutputCodesModel = SixthOutputCodesModel(
+    if (babyMovementLegsCode.value == "6.30" &&
+        babyMovementHandsCode.value == "6.30") {
+      babyMovementCode = "6.30";
+    } else if (babyMovementLegsCode.value != "6.30" &&
+        babyMovementHandsCode.value != "6.30") {
+      babyMovementCode =
+          "${babyMovementHandsCode.value},${babyMovementLegsCode.value}";
+    } else if (babyMovementLegsCode.value != "6.30" &&
+        babyMovementHandsCode.value == "6.30") {
+      babyMovementCode = babyMovementLegsCode.value;
+    } else {
+      babyMovementCode = babyMovementHandsCode.value;
+    }
+    OutputCodesModel outputCodesModel = OutputCodesModel(
       cameraId: fifthOutputCodesModel.cameraId,
       babyId: fifthOutputCodesModel.babyId,
       nurseId: fifthOutputCodesModel.nurseId,
@@ -80,14 +94,13 @@ class BabyNextConditionController extends GetxController {
       whatsHappeningId: fifthOutputCodesModel.whatsHappeningId,
       behaviourCode: behaviourCode.value,
       babyVoiceCode: babyVoiceCode.value,
-      babyMovementHandsCode: babyMovementHandsCode.value,
-      babyMovementLegsCode: babyMovementLegsCode.value,
+      babyMovementCode: babyMovementCode,
       babyBreathingCode: babyBreathingCode.value,
       eyeCode: eyeCode.value,
     );
     Get.offAll(
       () => AnnotationSuccessfulScreen(
-        sixthOutputCodesModel: sixthOutputCodesModel,
+        codesModel: outputCodesModel,
       ),
       transition: Transition.fadeIn,
     );

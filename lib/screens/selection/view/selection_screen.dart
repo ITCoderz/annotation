@@ -1,5 +1,4 @@
 import 'package:annotation/utils/alignment/widget_alignment.dart';
-import 'package:annotation/utils/constants/constant_lists.dart';
 import 'package:annotation/utils/gaps/gaps.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

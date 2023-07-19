@@ -36,54 +36,13 @@ class AppServices {
     }
   }
 
-  static Future<bool> fifthOutputService(
-      {required FifthOutputCodesModel fifthOutputCodesModel}) async {
+  static Future<bool> outputService(
+      {required OutputCodesModel outputCodesModel}) async {
     DateTime now = DateTime.now();
     String formattedDateTime =
         '${now.year}.${(now.month)}.${(now.day)}.${(now.hour)}.${(now.minute)}.${(now.second)}';
     String output =
-        "$formattedDateTime,${fifthOutputCodesModel.cameraId},${fifthOutputCodesModel.babyId},${fifthOutputCodesModel.nurseId},${fifthOutputCodesModel.babyIncubatorStateId},${fifthOutputCodesModel.whatsHappeningId}";
-    try {
-      final wsUrl = Uri.parse(ConstantStrings.socketChannelUrl);
-      var channel = WebSocketChannel.connect(wsUrl);
-      channel.stream.listen(
-        (message) {
-          debugPrint(
-              "<==============================================================>");
-          debugPrint('Received message: $message');
-          debugPrint(
-              "<==============================================================>");
-        },
-        onDone: () {
-          debugPrint("<=========================>");
-          debugPrint('WebSocket Channel Closed');
-          debugPrint("<=========================>");
-        },
-        onError: (error) {
-          debugPrint("<==========================>");
-          debugPrint('WebSocket Server Not Found');
-          debugPrint("<==========================>");
-        },
-      );
-      channel.sink.add(output);
-      channel.sink.close(status.goingAway);
-
-      return true;
-    } catch (e) {
-      debugPrint("<===============Inside Catch===============>");
-      debugPrint(e.toString());
-      debugPrint("<==========================================>");
-      return false;
-    }
-  }
-
-  static Future<bool> sixthOutputService(
-      {required SixthOutputCodesModel sixthOutputCodesModel}) async {
-    DateTime now = DateTime.now();
-    String formattedDateTime =
-        '${now.year}.${(now.month)}.${(now.day)}.${(now.hour)}.${(now.minute)}.${(now.second)}';
-    String output =
-        "$formattedDateTime,${sixthOutputCodesModel.cameraId},${sixthOutputCodesModel.babyId},${sixthOutputCodesModel.nurseId},${sixthOutputCodesModel.babyIncubatorStateId},${sixthOutputCodesModel.whatsHappeningId},${sixthOutputCodesModel.behaviourCode},${sixthOutputCodesModel.babyVoiceCode},${sixthOutputCodesModel.babyMovementHandsCode},${sixthOutputCodesModel.babyMovementLegsCode},${sixthOutputCodesModel.babyBreathingCode},${sixthOutputCodesModel.eyeCode}";
+        "$formattedDateTime,${outputCodesModel.cameraId},${outputCodesModel.babyId},${outputCodesModel.nurseId},${outputCodesModel.babyIncubatorStateId},${outputCodesModel.whatsHappeningId},${outputCodesModel.behaviourCode},${outputCodesModel.babyVoiceCode},${outputCodesModel.babyMovementCode},${outputCodesModel.babyBreathingCode},${outputCodesModel.eyeCode}";
     try {
       final wsUrl = Uri.parse(ConstantStrings.socketChannelUrl);
       var channel = WebSocketChannel.connect(wsUrl);

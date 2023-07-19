@@ -78,7 +78,7 @@ class BabyIncubatorStateScreen extends StatelessWidget {
                                       .incubatorStateTitle,
                                   onTapFunction: () {
                                     babyIncubatorController
-                                        .setBabyIncubatorStateId(
+                                        .setBabyInsideIncubatorStateId(
                                       babyIncubatorStateId: ConstantLists
                                           .babyIncubatorStateList[0]
                                           .incubatorStateCode,
@@ -102,7 +102,7 @@ class BabyIncubatorStateScreen extends StatelessWidget {
                                       .incubatorStateTitle,
                                   onTapFunction: () {
                                     babyIncubatorController
-                                        .setBabyIncubatorStateId(
+                                        .setBabyNotInsideIncubatorState(
                                       babyIncubatorStateId: ConstantLists
                                           .babyIncubatorStateList[1]
                                           .incubatorStateCode,

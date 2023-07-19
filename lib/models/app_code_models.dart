@@ -12,7 +12,7 @@ class FifthOutputCodesModel {
 }
 
 ///
-class SixthOutputCodesModel {
+class OutputCodesModel {
   String cameraId,
       babyId,
       nurseId,
@@ -20,12 +20,11 @@ class SixthOutputCodesModel {
       whatsHappeningId,
       behaviourCode,
       babyVoiceCode,
-      babyMovementHandsCode,
-      babyMovementLegsCode,
+      babyMovementCode,
       babyBreathingCode,
       eyeCode;
 
-  SixthOutputCodesModel({
+  OutputCodesModel({
     required this.cameraId,
     required this.babyId,
     required this.nurseId,
@@ -33,8 +32,7 @@ class SixthOutputCodesModel {
     required this.whatsHappeningId,
     required this.behaviourCode,
     required this.babyVoiceCode,
-    required this.babyMovementHandsCode,
-    required this.babyMovementLegsCode,
+    required this.babyMovementCode,
     required this.babyBreathingCode,
     required this.eyeCode,
   });
