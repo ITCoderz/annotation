@@ -8,7 +8,6 @@ import '../../baby_incubator_state/view/baby_incubator_state_screen.dart';
 
 class SelectionController extends GetxController {
   late SharedPreferences prefs;
-  GlobalKey<FormState> cameraFormKey = GlobalKey<FormState>();
   GlobalKey<FormState> babyFormKey = GlobalKey<FormState>();
   GlobalKey<FormState> nurseFormKey = GlobalKey<FormState>();
   TextEditingController cameraIdTextController = TextEditingController();
@@ -40,28 +39,6 @@ class SelectionController extends GetxController {
     babyIdList.value = (prefs.getStringList(ConstantStrings.babyIdList) ?? []);
     nurseIdList.value =
         (prefs.getStringList(ConstantStrings.nurseIdList) ?? []);
-  }
-
-  saveCameraIdInStorage() async {
-    if (cameraFormKey.currentState!.validate()) {
-      List<String> tempList =
-          (prefs.getStringList(ConstantStrings.cameraIdList) ?? []);
-      if (tempList.contains(cameraIdTextController.text)) {
-        Get.snackbar(
-          "nem sikerült",
-          "Az azonosító már létezik, kérjük, adjon meg másik azonosítót",
-          backgroundColor: CColors.whiteColor,
-        );
-      } else {
-        tempList.add(cameraIdTextController.text);
-
-        await prefs.setStringList(ConstantStrings.cameraIdList, tempList);
-        cameraIdList.value =
-            (prefs.getStringList(ConstantStrings.cameraIdList) ?? []);
-        cameraIdTextController.clear();
-        Get.back();
-      }
-    }
   }
 
   saveBabyIdInStorage() async {
@@ -108,8 +85,9 @@ class SelectionController extends GetxController {
     }
   }
 
-  assignCameraId({required String id}) {
-    cameraId = id;
+  assignCameraId({required String cameraId}) async {
+    cameraIdTextController.text = cameraId;
+    this.cameraId = cameraIdTextController.text;
   }
 
   assignBabyId({required String id}) {

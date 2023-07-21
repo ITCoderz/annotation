@@ -1,4 +1,6 @@
+import 'package:annotation/reusable_widgets/custom_text_field.dart';
 import 'package:annotation/utils/alignment/widget_alignment.dart';
+import 'package:annotation/utils/constants/constant_lists.dart';
 import 'package:annotation/utils/gaps/gaps.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -41,7 +43,7 @@ class SelectionScreen extends StatelessWidget {
                   padding: const EdgeInsets.only(
                     left: 18,
                   ),
-                  height: context.height * 0.71,
+                  height: context.height * 0.73,
                   width: context.width * 0.73,
                   child: SingleChildScrollView(
                     child: Column(
@@ -67,16 +69,42 @@ class SelectionScreen extends StatelessWidget {
                         ),
                         20.ph,
                         Obx(() {
-                          return CustomDropDown(
-                            width: 180,
-                            onChanged: (val) {
-                              selectionController.assignCameraId(id: val!);
-                            },
-                            hintText: "...",
-                            mappingList: selectionController.cameraIdList,
-                            isDark: selectionController.isNightTime.value,
+                          return IntrinsicWidth(
+                            child: ConstrainedBox(
+                              constraints: const BoxConstraints(
+                                minWidth: 180,
+                              ),
+                              child: SelectionTextField(
+                                isDark: selectionController.isNightTime.value,
+                                textEditingController:
+                                    selectionController.cameraIdTextController,
+                                hintText: "...",
+                              ),
+                            ),
                           );
                         }),
+                        20.ph,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            for (int index = 0;
+                                index < ConstantLists.cameraIdList.length;
+                                index++) ...[
+                              InkWell(
+                                onTap: () {
+                                  selectionController.assignCameraId(
+                                    cameraId: ConstantLists
+                                        .cameraIdList[index].cameraCode,
+                                  );
+                                },
+                                child: Image.asset(
+                                  ConstantLists.cameraIdList[index].cameraImage,
+                                  height: 90,
+                                ),
+                              ),
+                            ]
+                          ],
+                        ),
                         20.ph,
                         Text(
                           "A Csecsemo Azonositot",
@@ -86,17 +114,23 @@ class SelectionScreen extends StatelessWidget {
                           textAlign: TextAlign.center,
                         ),
                         20.ph,
-                        Obx(() {
-                          return CustomDropDown(
-                            width: 180,
-                            onChanged: (val) {
-                              selectionController.assignBabyId(id: val!);
-                            },
-                            hintText: "...",
-                            mappingList: selectionController.babyIdList,
-                            isDark: selectionController.isNightTime.value,
-                          );
-                        }),
+                        IntrinsicWidth(
+                          child: ConstrainedBox(
+                            constraints: const BoxConstraints(
+                              minWidth: 180,
+                            ),
+                            child: Obx(() {
+                              return CustomDropDown(
+                                onChanged: (val) {
+                                  selectionController.assignBabyId(id: val!);
+                                },
+                                hintText: "...",
+                                mappingList: selectionController.babyIdList,
+                                isDark: selectionController.isNightTime.value,
+                              );
+                            }),
+                          ),
+                        ),
                         20.ph,
                         Text(
                           "Az Apolo Azonositot",
@@ -106,17 +140,23 @@ class SelectionScreen extends StatelessWidget {
                           textAlign: TextAlign.center,
                         ),
                         20.ph,
-                        Obx(() {
-                          return CustomDropDown(
-                            width: 180,
-                            onChanged: (val) {
-                              selectionController.assignNurseId(id: val!);
-                            },
-                            hintText: "...",
-                            mappingList: selectionController.nurseIdList,
-                            isDark: selectionController.isNightTime.value,
-                          );
-                        }),
+                        IntrinsicWidth(
+                          child: ConstrainedBox(
+                            constraints: const BoxConstraints(
+                              minWidth: 180,
+                            ),
+                            child: Obx(() {
+                              return CustomDropDown(
+                                onChanged: (val) {
+                                  selectionController.assignNurseId(id: val!);
+                                },
+                                hintText: "...",
+                                mappingList: selectionController.nurseIdList,
+                                isDark: selectionController.isNightTime.value,
+                              );
+                            }),
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -141,34 +181,6 @@ class SelectionScreen extends StatelessWidget {
                   alignment: Alignment.bottomCenter,
                 ),
                 SettingsMenu(
-                  addCameraIdFunction: () {
-                    Future.delayed(
-                      const Duration(
-                        seconds: 0,
-                      ),
-                      () {
-                        showDialog(
-                          context: context,
-                          builder: (context) => CustomAlertDialog(
-                            formKey: selectionController.cameraFormKey,
-                            isDark: selectionController.isNightTime.value,
-                            textEditingController:
-                                selectionController.cameraIdTextController,
-                            saveFunction: () {
-                              selectionController.saveCameraIdInStorage();
-                            },
-                            validatorFunction: (val) {
-                              if (val!.isNotEmpty) {
-                                return null;
-                              } else {
-                                return "Kérjük, írjon be egy szöveget";
-                              }
-                            },
-                          ),
-                        );
-                      },
-                    );
-                  },
                   addBabyIdFunction: () {
                     Future.delayed(
                       const Duration(

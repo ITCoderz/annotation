@@ -5,12 +5,11 @@ import 'package:flutter/material.dart';
 
 class SettingsMenu extends StatelessWidget {
   final Offset offset;
-  final Function()? addCameraIdFunction, addBabyIdFunction, addNurseIdFunction;
+  final Function()? addBabyIdFunction, addNurseIdFunction;
   final bool needSpaceFromRight, needSpaceFromTop, isDark;
 
   const SettingsMenu({
     Key? key,
-    required this.addCameraIdFunction,
     required this.addBabyIdFunction,
     required this.addNurseIdFunction,
     required this.isDark,
@@ -43,18 +42,6 @@ class SettingsMenu extends StatelessWidget {
                   ? CColors.buttonBrightBackground
                   : CColors.topLefBrightButtonBackground,
               itemBuilder: (context) => [
-                PopupMenuItem<int>(
-                  value: 0,
-                  onTap: addCameraIdFunction,
-                  child: Text(
-                    'kameraazonosító hozzáadása',
-                    textAlign: TextAlign.center,
-                    style: isDark
-                        ? CustomTextStyles.bright530
-                        : CustomTextStyles.fontDark530,
-                  ),
-                ),
-                const PopupMenuDivider(),
                 PopupMenuItem<int>(
                   value: 1,
                   onTap: addBabyIdFunction,

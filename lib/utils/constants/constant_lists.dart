@@ -22,13 +22,31 @@ class ConstantLists {
   ];
 
   ///
-  static const List<String> cameraIdList = [
-    'bagoly',
-    'béka',
-    'sün',
-    'túkán',
-    'fa',
-    'vörösmókus'
+  static List<CameraSelectionModel> cameraIdList = [
+    CameraSelectionModel(
+      cameraImage: Assets.cameraIdImagesBagoly,
+      cameraCode: 'bagoly',
+    ),
+    CameraSelectionModel(
+      cameraImage: Assets.cameraIdImagesBeka,
+      cameraCode: 'béka',
+    ),
+    CameraSelectionModel(
+      cameraImage: Assets.cameraIdImagesSun,
+      cameraCode: 'sün',
+    ),
+    CameraSelectionModel(
+      cameraImage: Assets.cameraIdImagesTukan,
+      cameraCode: 'túkán',
+    ),
+    CameraSelectionModel(
+      cameraImage: Assets.cameraIdImagesFa,
+      cameraCode: 'fa',
+    ),
+    CameraSelectionModel(
+      cameraImage: Assets.cameraIdImagesVorosmokus,
+      cameraCode: 'vörösmókus',
+    ),
   ];
 
   ///

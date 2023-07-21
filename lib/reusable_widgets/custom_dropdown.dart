@@ -8,15 +8,12 @@ class CustomDropDown extends StatelessWidget {
   final List mappingList;
   final String hintText;
   final double? height, width;
-  final bool isForBottomSheetLocation, isForDiscoverSorting;
   final bool isDark;
 
   const CustomDropDown(
       {super.key,
       this.height,
       this.width,
-      this.isForBottomSheetLocation = false,
-      this.isForDiscoverSorting = false,
       required this.isDark,
       required this.onChanged,
       required this.hintText,
@@ -53,27 +50,23 @@ class CustomDropDown extends StatelessWidget {
           ),
         ),
         isExpanded: true,
-        hint: FittedBox(
-          child: Text(
-            hintText,
-            style: isDark
-                ? CustomTextStyles.buttonDark950
-                : CustomTextStyles.white950,
-            textAlign: TextAlign.center,
-          ),
+        hint: Text(
+          hintText,
+          style: isDark
+              ? CustomTextStyles.buttonDark950
+              : CustomTextStyles.white950,
+          textAlign: TextAlign.center,
         ),
         items: mappingList
             .map((item) => DropdownMenuItem<String>(
                   value: item,
                   alignment: Alignment.center,
-                  child: FittedBox(
-                    child: Text(
-                      item,
-                      style: isDark
-                          ? CustomTextStyles.buttonDark950
-                          : CustomTextStyles.white950,
-                      textAlign: TextAlign.center,
-                    ),
+                  child: Text(
+                    item,
+                    style: isDark
+                        ? CustomTextStyles.buttonDark950
+                        : CustomTextStyles.white950,
+                    textAlign: TextAlign.center,
                   ),
                 ))
             .toList(),

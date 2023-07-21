@@ -65,6 +65,7 @@ flutter:
     - assets/images/light_mode/incubator_state/
     - assets/images/light_mode/selection_screen/
     - assets/images/light_mode/
+    - assets/images/camera_id_images/
 
   fonts:
     - family: Bembo Std

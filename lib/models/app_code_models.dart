@@ -1,4 +1,14 @@
 ///
+class CameraSelectionModel {
+  String cameraImage, cameraCode;
+
+  CameraSelectionModel({
+    required this.cameraImage,
+    required this.cameraCode,
+  });
+}
+
+///
 class FifthOutputCodesModel {
   String cameraId, babyId, nurseId, babyIncubatorStateId, whatsHappeningId;
 
@@ -35,16 +45,6 @@ class OutputCodesModel {
     required this.babyMovementCode,
     required this.babyBreathingCode,
     required this.eyeCode,
-  });
-}
-
-///
-class SelectionModel {
-  String selectionTitle, selectionCode;
-
-  SelectionModel({
-    required this.selectionTitle,
-    required this.selectionCode,
   });
 }
 
