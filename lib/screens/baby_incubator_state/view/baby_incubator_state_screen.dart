@@ -56,7 +56,7 @@ class BabyIncubatorStateScreen extends StatelessWidget {
                       children: [
                         40.ph,
                         Text(
-                          "Bent van a csecsemo az inkubatorban?",
+                          "Bent van a csecsemő az inkubátorban?",
                           style: babyIncubatorController.isNightTime.value
                               ? CustomTextStyles.fontBright970
                               : CustomTextStyles.fontDark970,

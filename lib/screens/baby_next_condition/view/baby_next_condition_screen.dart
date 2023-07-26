@@ -53,7 +53,7 @@ class BabyNextConditionScreen extends StatelessWidget {
                     ),
                     Expanded(
                       child: Text(
-                        "Az utobbi percben a csecsemo",
+                        "Az utóbbi percben a csecsemő",
                         style: babyNextConditionController.isNightTime.value
                             ? CustomTextStyles.fontBright970
                             : CustomTextStyles.fontDark970,
@@ -75,7 +75,7 @@ class BabyNextConditionScreen extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
-                            "Milyen Viselkedesi Allapotban Volt?",
+                            "Milyen viselkedési állapotban volt?",
                             style: babyNextConditionController.isNightTime.value
                                 ? CustomTextStyles.fontBright640
                                 : CustomTextStyles.fontDark640,
@@ -125,7 +125,7 @@ class BabyNextConditionScreen extends StatelessWidget {
                               ],
                             ),
                           ),
-                          20.ph,
+                          15.ph,
                           Text(
                             "Hangja?",
                             style: babyNextConditionController.isNightTime.value
@@ -133,7 +133,7 @@ class BabyNextConditionScreen extends StatelessWidget {
                                 : CustomTextStyles.fontDark640,
                             textAlign: TextAlign.center,
                           ),
-                          20.ph,
+                          15.ph,
                           SizedBox(
                             height: 180,
                             child: Row(
@@ -171,7 +171,7 @@ class BabyNextConditionScreen extends StatelessWidget {
                               ],
                             ),
                           ),
-                          20.ph,
+                          15.ph,
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -179,14 +179,14 @@ class BabyNextConditionScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Text(
-                                    "Mije Mozgott?",
+                                    "Mije mozgott?",
                                     style: babyNextConditionController
                                             .isNightTime.value
                                         ? CustomTextStyles.fontBright640
                                         : CustomTextStyles.fontDark640,
                                     textAlign: TextAlign.center,
                                   ),
-                                  20.ph,
+                                  15.ph,
                                   SizedBox(
                                     height: 180,
                                     child: Row(
@@ -255,14 +255,14 @@ class BabyNextConditionScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Text(
-                                    "Legzese?",
+                                    "Légzése?",
                                     style: babyNextConditionController
                                             .isNightTime.value
                                         ? CustomTextStyles.fontBright640
                                         : CustomTextStyles.fontDark640,
                                     textAlign: TextAlign.center,
                                   ),
-                                  20.ph,
+                        15.ph,
                                   SizedBox(
                                     height: 180,
                                     child: Row(
@@ -315,7 +315,7 @@ class BabyNextConditionScreen extends StatelessWidget {
                               ),
                             ],
                           ),
-                          20.ph,
+                          15.ph,
                           SizedBox(
                             height: 230,
                             child: Row(
@@ -396,7 +396,7 @@ class BabyNextConditionScreen extends StatelessWidget {
                                             fifthOutputCodesModel,
                                       );
                                     },
-                                    buttonText: "Mentis",
+                                    buttonText: "Mentés",
                                     width: 350,
                                     height: 150,
                                     isDark: babyNextConditionController

@@ -1,3 +1,5 @@
+import 'package:annotation/reusable_widgets/custom_alert_dialog/custom_delete_id_alert_dialog.dart';
+import 'package:annotation/reusable_widgets/custom_alert_dialog/custom_selection_dialog.dart';
 import 'package:annotation/reusable_widgets/custom_text_field.dart';
 import 'package:annotation/utils/alignment/widget_alignment.dart';
 import 'package:annotation/utils/constants/constant_lists.dart';
@@ -7,7 +9,7 @@ import 'package:get/get.dart';
 
 import '../../../generated/assets.dart';
 import '../../../reusable_widgets/buttons/border_button.dart';
-import '../../../reusable_widgets/custom_alert_dialog.dart';
+import '../../../reusable_widgets/custom_alert_dialog/custom_enter_id_alert_dialog.dart';
 import '../../../reusable_widgets/custom_dropdown.dart';
 import '../../../reusable_widgets/settings_menu.dart';
 import '../../../utils/text_styles/text_styles.dart';
@@ -53,7 +55,7 @@ class SelectionScreen extends StatelessWidget {
                       children: [
                         30.ph,
                         Text(
-                          "Kerem Valassza Ki",
+                          "Kérem válassza ki",
                           style: selectionController.isNightTime.value
                               ? CustomTextStyles.fontBright860
                               : CustomTextStyles.fontDark860,
@@ -61,13 +63,13 @@ class SelectionScreen extends StatelessWidget {
                         ),
                         30.ph,
                         Text(
-                          "A Camera Azonositot",
+                          "A kamera azonosítót",
                           style: selectionController.isNightTime.value
                               ? CustomTextStyles.fontBright640
                               : CustomTextStyles.fontDark640,
                           textAlign: TextAlign.center,
                         ),
-                        20.ph,
+                        15.ph,
                         Obx(() {
                           return IntrinsicWidth(
                             child: ConstrainedBox(
@@ -83,7 +85,7 @@ class SelectionScreen extends StatelessWidget {
                             ),
                           );
                         }),
-                        20.ph,
+                        15.ph,
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -105,15 +107,15 @@ class SelectionScreen extends StatelessWidget {
                             ]
                           ],
                         ),
-                        20.ph,
+                        15.ph,
                         Text(
-                          "A Csecsemo Azonositot",
+                          "A Csecsemo azonosítót",
                           style: selectionController.isNightTime.value
                               ? CustomTextStyles.fontBright640
                               : CustomTextStyles.fontDark640,
                           textAlign: TextAlign.center,
                         ),
-                        20.ph,
+                        15.ph,
                         IntrinsicWidth(
                           child: ConstrainedBox(
                             constraints: const BoxConstraints(
@@ -125,21 +127,23 @@ class SelectionScreen extends StatelessWidget {
                                   selectionController.assignBabyId(id: val!);
                                 },
                                 hintText: "...",
+                                initialValue: selectionController
+                                    .initialBabyIdValue.value,
                                 mappingList: selectionController.babyIdList,
                                 isDark: selectionController.isNightTime.value,
                               );
                             }),
                           ),
                         ),
-                        20.ph,
+                        15.ph,
                         Text(
-                          "Az Apolo Azonositot",
+                          "Az ápoló azonosítót",
                           style: selectionController.isNightTime.value
                               ? CustomTextStyles.fontBright640
                               : CustomTextStyles.fontDark640,
                           textAlign: TextAlign.center,
                         ),
-                        20.ph,
+                        15.ph,
                         IntrinsicWidth(
                           child: ConstrainedBox(
                             constraints: const BoxConstraints(
@@ -151,6 +155,8 @@ class SelectionScreen extends StatelessWidget {
                                   selectionController.assignNurseId(id: val!);
                                 },
                                 hintText: "...",
+                                initialValue: selectionController
+                                    .initialNurseIdValue.value,
                                 mappingList: selectionController.nurseIdList,
                                 isDark: selectionController.isNightTime.value,
                               );
@@ -171,7 +177,7 @@ class SelectionScreen extends StatelessWidget {
                       onPressedFunction: () {
                         selectionController.navigateValidator();
                       },
-                      buttonText: "Tovabb",
+                      buttonText: "Tovább",
                       height: 100,
                       isDark: selectionController.isNightTime.value,
                     ),
@@ -181,63 +187,147 @@ class SelectionScreen extends StatelessWidget {
                   alignment: Alignment.bottomCenter,
                 ),
                 SettingsMenu(
-                  addBabyIdFunction: () {
-                    Future.delayed(
-                      const Duration(
-                        seconds: 0,
-                      ),
-                      () {
-                        showDialog(
-                          context: context,
-                          builder: (context) => CustomAlertDialog(
-                            formKey: selectionController.babyFormKey,
-                            isDark: selectionController.isNightTime.value,
-                            textEditingController:
-                                selectionController.babyIdTextController,
-                            saveFunction: () {
-                              selectionController.saveBabyIdInStorage();
-                            },
-                            validatorFunction: (val) {
-                              if (val!.isNotEmpty) {
-                                return null;
-                              } else {
-                                return "Kérjük, írjon be egy szöveget";
-                              }
-                            },
-                          ),
-                        );
-                      },
-                    );
-                  },
-                  addNurseIdFunction: () {
-                    Future.delayed(
-                      const Duration(
-                        seconds: 0,
-                      ),
-                      () {
-                        showDialog(
-                          context: context,
-                          builder: (context) => CustomAlertDialog(
-                            formKey: selectionController.nurseFormKey,
-                            isDark: selectionController.isNightTime.value,
-                            textEditingController:
-                                selectionController.nurseIdTextController,
-                            saveFunction: () {
-                              selectionController.saveNurseIdInStorage();
-                            },
-                            validatorFunction: (val) {
-                              if (val!.isNotEmpty) {
-                                return null;
-                              } else {
-                                return "Kérjük, írjon be egy szöveget";
-                              }
-                            },
-                          ),
-                        );
-                      },
-                    );
-                  },
                   isDark: selectionController.isNightTime.value,
+                  addIdsFunction: () {
+                    Future.delayed(
+                      const Duration(
+                        seconds: 0,
+                      ),
+                      () {
+                        showDialog(
+                          context: context,
+                          builder: (context) => CustomSelectionDialog(
+                            isDark: selectionController.isNightTime.value,
+                            selectionOneString: "add hozzá babaazonosítót",
+                            selectionSecondString:
+                                "add hozzá a nővér azonosítóját",
+                            babyFunction: () {
+                              Get.back();
+                              Future.delayed(
+                                const Duration(
+                                  seconds: 0,
+                                ),
+                                () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) =>
+                                        CustomEnterIdAlertDialog(
+                                      formKey: selectionController.babyFormKey,
+                                      isDark:
+                                          selectionController.isNightTime.value,
+                                      textEditingController: selectionController
+                                          .babyIdTextController,
+                                      saveFunction: () {
+                                        selectionController
+                                            .saveBabyIdInStorage();
+                                      },
+                                      validatorFunction: (val) {
+                                        if (val!.isNotEmpty) {
+                                          return null;
+                                        } else {
+                                          return "Kérjük, írjon be egy szöveget";
+                                        }
+                                      },
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                            nurseFunction: () {
+                              Get.back();
+                              Future.delayed(
+                                const Duration(
+                                  seconds: 0,
+                                ),
+                                () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) =>
+                                        CustomEnterIdAlertDialog(
+                                      formKey: selectionController.nurseFormKey,
+                                      isDark:
+                                          selectionController.isNightTime.value,
+                                      textEditingController: selectionController
+                                          .nurseIdTextController,
+                                      saveFunction: () {
+                                        selectionController
+                                            .saveNurseIdInStorage();
+                                      },
+                                      validatorFunction: (val) {
+                                        if (val!.isNotEmpty) {
+                                          return null;
+                                        } else {
+                                          return "Kérjük, írjon be egy szöveget";
+                                        }
+                                      },
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                          ),
+                        );
+                      },
+                    );
+                  },
+                  removeFromExistingIdsFunction: () {
+                    Future.delayed(
+                      const Duration(
+                        seconds: 0,
+                      ),
+                      () {
+                        showDialog(
+                          context: context,
+                          builder: (context) => CustomSelectionDialog(
+                            isDark: selectionController.isNightTime.value,
+                            selectionOneString: "örölje a baba azonosítóját",
+                            selectionSecondString:
+                                "törölje a nővér azonosítóját",
+                            babyFunction: () {
+                              Get.back();
+                              Future.delayed(
+                                const Duration(
+                                  seconds: 0,
+                                ),
+                                () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) =>
+                                        CustomDeleteIdAlertDialog(
+                                      isDark:
+                                          selectionController.isNightTime.value,
+                                      isForBabyDeletion: true,
+                                      idList: const [],
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                            nurseFunction: () {
+                              Get.back();
+                              Future.delayed(
+                                const Duration(
+                                  seconds: 0,
+                                ),
+                                () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) =>
+                                        CustomDeleteIdAlertDialog(
+                                      isDark:
+                                          selectionController.isNightTime.value,
+                                      isForBabyDeletion: false,
+                                      idList: const ["1"],
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                          ),
+                        );
+                      },
+                    );
+                  },
                 ).alignWidget(
                   alignment: Alignment.topRight,
                 ),

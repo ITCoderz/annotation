@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 
 class SettingsMenu extends StatelessWidget {
   final Offset offset;
-  final Function()? addBabyIdFunction, addNurseIdFunction;
+  final Function()? addIdsFunction, removeFromExistingIdsFunction;
   final bool needSpaceFromRight, needSpaceFromTop, isDark;
 
   const SettingsMenu({
     Key? key,
-    required this.addBabyIdFunction,
-    required this.addNurseIdFunction,
+    required this.addIdsFunction,
+    required this.removeFromExistingIdsFunction,
     required this.isDark,
     this.needSpaceFromRight = true,
     this.needSpaceFromTop = true,
@@ -43,26 +43,52 @@ class SettingsMenu extends StatelessWidget {
                   : CColors.topLefBrightButtonBackground,
               itemBuilder: (context) => [
                 PopupMenuItem<int>(
-                  value: 1,
-                  onTap: addBabyIdFunction,
-                  child: Text(
-                    'add hozzá babaazonosítót',
-                    textAlign: TextAlign.center,
-                    style: isDark
-                        ? CustomTextStyles.bright530
-                        : CustomTextStyles.fontDark530,
+                  value: 0,
+                  onTap: addIdsFunction,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        'add hozzá babaazonosítót',
+                        textAlign: TextAlign.center,
+                        style: isDark
+                            ? CustomTextStyles.bright530
+                            : CustomTextStyles.fontDark530,
+                      ),
+                      const Spacer(),
+                      Icon(
+                        Icons.add,
+                        size: 30,
+                        color: isDark
+                            ? CColors.fontColorBrightBackground
+                            : CColors.fontColorDarkBackground,
+                      ),
+                    ],
                   ),
                 ),
                 const PopupMenuDivider(),
                 PopupMenuItem<int>(
-                  value: 3,
-                  onTap: addNurseIdFunction,
-                  child: Text(
-                    'add hozzá a nővér azonosítóját',
-                    textAlign: TextAlign.center,
-                    style: isDark
-                        ? CustomTextStyles.bright530
-                        : CustomTextStyles.fontDark530,
+                  value: 1,
+                  onTap: removeFromExistingIdsFunction,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        'törölje a meglévő azonosítót',
+                        textAlign: TextAlign.left,
+                        style: isDark
+                            ? CustomTextStyles.bright530
+                            : CustomTextStyles.fontDark530,
+                      ),
+                      const Spacer(),
+                      Icon(
+                        Icons.remove,
+                        size: 30,
+                        color: isDark
+                            ? CColors.fontColorBrightBackground
+                            : CColors.fontColorDarkBackground,
+                      ),
+                    ],
                   ),
                 ),
               ],

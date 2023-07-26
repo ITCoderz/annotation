@@ -9,15 +9,18 @@ class CustomDropDown extends StatelessWidget {
   final String hintText;
   final double? height, width;
   final bool isDark;
+  final String? initialValue;
 
-  const CustomDropDown(
-      {super.key,
-      this.height,
-      this.width,
-      required this.isDark,
-      required this.onChanged,
-      required this.hintText,
-      required this.mappingList});
+  const CustomDropDown({
+    super.key,
+    this.height,
+    this.width,
+    required this.isDark,
+    required this.onChanged,
+    required this.hintText,
+    required this.mappingList,
+    this.initialValue,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +60,7 @@ class CustomDropDown extends StatelessWidget {
               : CustomTextStyles.white950,
           textAlign: TextAlign.center,
         ),
+        value: initialValue,
         items: mappingList
             .map((item) => DropdownMenuItem<String>(
                   value: item,

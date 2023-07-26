@@ -1,7 +1,9 @@
 import 'package:annotation/models/app_code_models.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../services/app_services/app_services.dart';
+import '../../../utils/colors/app_colors.dart';
 import '../../successful_annotation/view/annotation_successful_screen.dart';
 
 class BabyNextConditionController extends GetxController {
@@ -72,7 +74,7 @@ class BabyNextConditionController extends GetxController {
 
   setAllBabyCodesAndNavigateValues({
     required FifthOutputCodesModel fifthOutputCodesModel,
-  }) {
+  }) async {
     if (babyMovementLegsCode.value == "6.30" &&
         babyMovementHandsCode.value == "6.30") {
       babyMovementCode = "6.30";
@@ -86,24 +88,34 @@ class BabyNextConditionController extends GetxController {
     } else {
       babyMovementCode = babyMovementHandsCode.value;
     }
-    OutputCodesModel outputCodesModel = OutputCodesModel(
-      cameraId: fifthOutputCodesModel.cameraId,
-      babyId: fifthOutputCodesModel.babyId,
-      nurseId: fifthOutputCodesModel.nurseId,
-      babyIncubatorStateId: fifthOutputCodesModel.babyIncubatorStateId,
-      whatsHappeningId: fifthOutputCodesModel.whatsHappeningId,
-      behaviourCode: behaviourCode.value,
-      babyVoiceCode: babyVoiceCode.value,
-      babyMovementCode: babyMovementCode,
-      babyBreathingCode: babyBreathingCode.value,
-      eyeCode: eyeCode.value,
-    );
-    Get.offAll(
-      () => AnnotationSuccessfulScreen(
-        codesModel: outputCodesModel,
-      ),
-      transition: Transition.fadeIn,
-    );
+    bool networkStatus = await AppServices.internetConnectivity();
+    if (networkStatus) {
+      OutputCodesModel outputCodesModel = OutputCodesModel(
+        cameraId: fifthOutputCodesModel.cameraId,
+        babyId: fifthOutputCodesModel.babyId,
+        nurseId: fifthOutputCodesModel.nurseId,
+        babyIncubatorStateId: fifthOutputCodesModel.babyIncubatorStateId,
+        whatsHappeningId: fifthOutputCodesModel.whatsHappeningId,
+        behaviourCode: behaviourCode.value,
+        babyVoiceCode: babyVoiceCode.value,
+        babyMovementCode: babyMovementCode,
+        babyBreathingCode: babyBreathingCode.value,
+        eyeCode: eyeCode.value,
+      );
+      Get.offAll(
+        () => AnnotationSuccessfulScreen(
+          codesModel: outputCodesModel,
+        ),
+        transition: Transition.fadeIn,
+      );
+    } else {
+      Get.snackbar(
+        "nem sikerült",
+        "Nincs internetkapcsolat.",
+        colorText: CColors.whiteColor,
+        backgroundColor: Colors.red,
+      );
+    }
   }
 
   getThemeValue() async {

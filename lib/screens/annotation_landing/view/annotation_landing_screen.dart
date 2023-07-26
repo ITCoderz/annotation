@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../generated/assets.dart';
+import '../../../services/app_services/app_services.dart';
 import '../../../utils/colors/app_colors.dart';
 import '../../../utils/text_styles/text_styles.dart';
 import '../../selection/view/selection_screen.dart';
@@ -35,11 +36,21 @@ class AnnotationLandingScreen extends StatelessWidget {
                 ),
               ),
               child: InkWell(
-                onTap: () {
-                  Get.to(
-                    () => const SelectionScreen(),
-                    transition: Transition.fadeIn,
-                  );
+                onTap: () async {
+                  bool networkStatus = await AppServices.internetConnectivity();
+                  if (networkStatus) {
+                    Get.offAll(
+                      () => const SelectionScreen(),
+                      transition: Transition.fadeIn,
+                    );
+                  } else {
+                    Get.snackbar(
+                      "nem sikerült",
+                      "Nincs internetkapcsolat.",
+                      colorText: CColors.whiteColor,
+                      backgroundColor: Colors.red,
+                    );
+                  }
                 },
                 child: SingleChildScrollView(
                   child: Column(

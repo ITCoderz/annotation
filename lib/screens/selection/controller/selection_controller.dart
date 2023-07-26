@@ -10,11 +10,17 @@ class SelectionController extends GetxController {
   late SharedPreferences prefs;
   GlobalKey<FormState> babyFormKey = GlobalKey<FormState>();
   GlobalKey<FormState> nurseFormKey = GlobalKey<FormState>();
-  TextEditingController cameraIdTextController = TextEditingController();
+
   TextEditingController babyIdTextController = TextEditingController();
   TextEditingController nurseIdTextController = TextEditingController();
 
   ///
+  final initialCameraIdValue = Rxn<String>();
+  final initialBabyIdValue = Rxn<String>();
+  final initialNurseIdValue = Rxn<String>();
+
+  ///
+  TextEditingController cameraIdTextController = TextEditingController();
   RxList<String> cameraIdList = <String>[].obs;
   RxList<String> babyIdList = <String>[].obs;
   RxList<String> nurseIdList = <String>[].obs;
@@ -39,6 +45,22 @@ class SelectionController extends GetxController {
     babyIdList.value = (prefs.getStringList(ConstantStrings.babyIdList) ?? []);
     nurseIdList.value =
         (prefs.getStringList(ConstantStrings.nurseIdList) ?? []);
+    if (prefs.getString(ConstantStrings.initialCameraIdValue) != null) {
+      initialCameraIdValue.value =
+          prefs.getString(ConstantStrings.initialCameraIdValue);
+      cameraIdTextController.text = initialCameraIdValue.value!;
+      cameraId = cameraIdTextController.text;
+    }
+    if (prefs.getString(ConstantStrings.initialBabyIdValue) != null) {
+      initialBabyIdValue.value =
+          prefs.getString(ConstantStrings.initialBabyIdValue);
+      babyId = initialBabyIdValue.value!;
+    }
+    if (prefs.getString(ConstantStrings.initialNurseIdValue) != null) {
+      initialNurseIdValue.value =
+          prefs.getString(ConstantStrings.initialNurseIdValue);
+      nurseId = initialNurseIdValue.value!;
+    }
   }
 
   saveBabyIdInStorage() async {
@@ -98,17 +120,31 @@ class SelectionController extends GetxController {
     nurseId = id;
   }
 
-  navigateValidator() {
+  navigateValidator() async {
     if (cameraId == "" || babyId == "" || nurseId == "") {
     } else {
-      Get.to(
-        () => BabyIncubatorStateScreen(
-          cameraId: cameraId,
-          babyId: babyId,
-          nurseId: nurseId,
-        ),
-        transition: Transition.fadeIn,
-      );
+      bool networkStatus = await AppServices.internetConnectivity();
+      if (networkStatus) {
+        prefs.setString(ConstantStrings.initialCameraIdValue, cameraId);
+        prefs.setString(ConstantStrings.initialBabyIdValue, babyId);
+        prefs.setString(ConstantStrings.initialNurseIdValue, nurseId);
+
+        Get.to(
+          () => BabyIncubatorStateScreen(
+            cameraId: cameraId,
+            babyId: babyId,
+            nurseId: nurseId,
+          ),
+          transition: Transition.fadeIn,
+        );
+      } else {
+        Get.snackbar(
+          "nem sikerült",
+          "Nincs internetkapcsolat.",
+          colorText: CColors.whiteColor,
+          backgroundColor: Colors.red,
+        );
+      }
     }
   }
 

@@ -58,7 +58,7 @@ class WhatsHappeningScreen extends StatelessWidget {
                     children: [
                       80.ph,
                       Text(
-                        "Mi tortenik",
+                        "Mi történik?",
                         style: whatsHappeningController.isNightTime.value
                             ? CustomTextStyles.fontBright970
                             : CustomTextStyles.fontDark970,

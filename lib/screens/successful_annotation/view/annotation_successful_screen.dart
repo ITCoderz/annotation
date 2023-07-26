@@ -66,7 +66,7 @@ class AnnotationSuccessfulScreen extends StatelessWidget {
                   ),
                   40.ph,
                   Text(
-                    "Sikeres Annotacio",
+                    "Sikeres annotáció",
                     style: annotationSuccessfulController.isNightTime.value
                         ? CustomTextStyles.fontBright860
                         : CustomTextStyles.fontDark860,

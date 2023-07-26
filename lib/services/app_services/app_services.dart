@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:web_socket_channel/status.dart' as status;
 import 'package:web_socket_channel/web_socket_channel.dart';
-
+import 'package:connectivity_plus/connectivity_plus.dart';
 import '../../models/app_code_models.dart';
 import '../../utils/constants/constant_strings.dart';
 import '../../utils/constants/time_class.dart';
@@ -32,6 +32,27 @@ class AppServices {
       return true;
     } else {
       // It's not night time
+      return false;
+    }
+  }
+
+  static Future<bool> internetConnectivity() async {
+    try {
+      ConnectivityResult connectivityResult =
+          await (Connectivity().checkConnectivity());
+      if (connectivityResult == ConnectivityResult.mobile) {
+        debugPrint("Connected to Mobile Network.");
+        return true;
+      } else if (connectivityResult == ConnectivityResult.wifi) {
+        debugPrint("Connected to Wifi Network.");
+        return true;
+      } else if (connectivityResult == ConnectivityResult.none) {
+        debugPrint("No Internet Connection");
+        return false;
+      }
+      return false;
+    } catch (e) {
+      debugPrint(e.toString());
       return false;
     }
   }

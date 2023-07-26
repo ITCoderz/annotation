@@ -1,7 +1,7 @@
 import 'package:annotation/models/app_code_models.dart';
+import 'package:annotation/screens/selection/view/selection_screen.dart';
 import 'package:get/get.dart';
 import '../../../services/app_services/app_services.dart';
-import '../../annotation_landing/view/annotation_landing_screen.dart';
 
 class SuccessfulAnnotationController extends GetxController {
   final isNightTime = false.obs;
@@ -22,7 +22,7 @@ class SuccessfulAnnotationController extends GetxController {
         const Duration(milliseconds: 3000),
         () {
           Get.offAll(
-            () => const AnnotationLandingScreen(),
+            () => const SelectionScreen(),
             transition: Transition.fadeIn,
           );
         },
