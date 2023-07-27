@@ -70,21 +70,24 @@ class SelectionScreen extends StatelessWidget {
                           textAlign: TextAlign.center,
                         ),
                         15.ph,
-                        Obx(() {
-                          return IntrinsicWidth(
-                            child: ConstrainedBox(
-                              constraints: const BoxConstraints(
-                                minWidth: 180,
-                              ),
-                              child: SelectionTextField(
-                                isDark: selectionController.isNightTime.value,
-                                textEditingController:
-                                    selectionController.cameraIdTextController,
-                                hintText: "...",
-                              ),
+                        IntrinsicWidth(
+                          child: ConstrainedBox(
+                            constraints: const BoxConstraints(
+                              minWidth: 180,
                             ),
-                          );
-                        }),
+                            child: GetBuilder(
+                                init: SelectionController(),
+                                builder: (controller) {
+                                  return SelectionTextField(
+                                    isDark:
+                                        selectionController.isNightTime.value,
+                                    textEditingController:
+                                        controller.cameraIdTextController,
+                                    hintText: "...",
+                                  );
+                                }),
+                          ),
+                        ),
                         15.ph,
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -121,18 +124,20 @@ class SelectionScreen extends StatelessWidget {
                             constraints: const BoxConstraints(
                               minWidth: 180,
                             ),
-                            child: Obx(() {
-                              return CustomDropDown(
-                                onChanged: (val) {
-                                  selectionController.assignBabyId(id: val!);
-                                },
-                                hintText: "...",
-                                initialValue: selectionController
-                                    .initialBabyIdValue.value,
-                                mappingList: selectionController.babyIdList,
-                                isDark: selectionController.isNightTime.value,
-                              );
-                            }),
+                            child: GetBuilder(
+                              init: SelectionController(),
+                              builder: (controller) {
+                                return CustomDropDown(
+                                  onChanged: (val) {
+                                    controller.assignBabyId(id: val!);
+                                  },
+                                  hintText: "...",
+                                  initialValue: controller.initialBabyIdValue,
+                                  mappingList: controller.babyIdList,
+                                  isDark: selectionController.isNightTime.value,
+                                );
+                              },
+                            ),
                           ),
                         ),
                         15.ph,
@@ -149,18 +154,21 @@ class SelectionScreen extends StatelessWidget {
                             constraints: const BoxConstraints(
                               minWidth: 180,
                             ),
-                            child: Obx(() {
-                              return CustomDropDown(
-                                onChanged: (val) {
-                                  selectionController.assignNurseId(id: val!);
-                                },
-                                hintText: "...",
-                                initialValue: selectionController
-                                    .initialNurseIdValue.value,
-                                mappingList: selectionController.nurseIdList,
-                                isDark: selectionController.isNightTime.value,
-                              );
-                            }),
+                            child: GetBuilder(
+                                init: SelectionController(),
+                                builder: (controller) {
+                                  return CustomDropDown(
+                                    onChanged: (val) {
+                                      controller.assignNurseId(id: val!);
+                                    },
+                                    hintText: "...",
+                                    initialValue:
+                                        controller.initialNurseIdValue,
+                                    mappingList: controller.nurseIdList,
+                                    isDark:
+                                        selectionController.isNightTime.value,
+                                  );
+                                }),
                           ),
                         ),
                       ],
@@ -186,149 +194,155 @@ class SelectionScreen extends StatelessWidget {
                 ).alignWidget(
                   alignment: Alignment.bottomCenter,
                 ),
-                SettingsMenu(
-                  isDark: selectionController.isNightTime.value,
-                  addIdsFunction: () {
-                    Future.delayed(
-                      const Duration(
-                        seconds: 0,
-                      ),
-                      () {
-                        showDialog(
-                          context: context,
-                          builder: (context) => CustomSelectionDialog(
-                            isDark: selectionController.isNightTime.value,
-                            selectionOneString: "add hozzá babaazonosítót",
-                            selectionSecondString:
-                                "add hozzá a nővér azonosítóját",
-                            babyFunction: () {
-                              Get.back();
-                              Future.delayed(
-                                const Duration(
-                                  seconds: 0,
-                                ),
-                                () {
-                                  showDialog(
-                                    context: context,
-                                    builder: (context) =>
-                                        CustomEnterIdAlertDialog(
-                                      formKey: selectionController.babyFormKey,
-                                      isDark:
-                                          selectionController.isNightTime.value,
-                                      textEditingController: selectionController
-                                          .babyIdTextController,
-                                      saveFunction: () {
-                                        selectionController
-                                            .saveBabyIdInStorage();
-                                      },
-                                      validatorFunction: (val) {
-                                        if (val!.isNotEmpty) {
-                                          return null;
-                                        } else {
-                                          return "Kérjük, írjon be egy szöveget";
-                                        }
-                                      },
-                                    ),
-                                  );
-                                },
-                              );
-                            },
-                            nurseFunction: () {
-                              Get.back();
-                              Future.delayed(
-                                const Duration(
-                                  seconds: 0,
-                                ),
-                                () {
-                                  showDialog(
-                                    context: context,
-                                    builder: (context) =>
-                                        CustomEnterIdAlertDialog(
-                                      formKey: selectionController.nurseFormKey,
-                                      isDark:
-                                          selectionController.isNightTime.value,
-                                      textEditingController: selectionController
-                                          .nurseIdTextController,
-                                      saveFunction: () {
-                                        selectionController
-                                            .saveNurseIdInStorage();
-                                      },
-                                      validatorFunction: (val) {
-                                        if (val!.isNotEmpty) {
-                                          return null;
-                                        } else {
-                                          return "Kérjük, írjon be egy szöveget";
-                                        }
-                                      },
-                                    ),
-                                  );
-                                },
-                              );
-                            },
-                          ),
-                        );
-                      },
-                    );
-                  },
-                  removeFromExistingIdsFunction: () {
-                    Future.delayed(
-                      const Duration(
-                        seconds: 0,
-                      ),
-                      () {
-                        showDialog(
-                          context: context,
-                          builder: (context) => CustomSelectionDialog(
-                            isDark: selectionController.isNightTime.value,
-                            selectionOneString: "örölje a baba azonosítóját",
-                            selectionSecondString:
-                                "törölje a nővér azonosítóját",
-                            babyFunction: () {
-                              Get.back();
-                              Future.delayed(
-                                const Duration(
-                                  seconds: 0,
-                                ),
-                                () {
-                                  showDialog(
-                                    context: context,
-                                    builder: (context) =>
-                                        CustomDeleteIdAlertDialog(
-                                      isDark:
-                                          selectionController.isNightTime.value,
-                                      isForBabyDeletion: true,
-                                      idList: const [],
-                                    ),
-                                  );
-                                },
-                              );
-                            },
-                            nurseFunction: () {
-                              Get.back();
-                              Future.delayed(
-                                const Duration(
-                                  seconds: 0,
-                                ),
-                                () {
-                                  showDialog(
-                                    context: context,
-                                    builder: (context) =>
-                                        CustomDeleteIdAlertDialog(
-                                      isDark:
-                                          selectionController.isNightTime.value,
-                                      isForBabyDeletion: false,
-                                      idList: const ["1"],
-                                    ),
-                                  );
-                                },
-                              );
-                            },
-                          ),
-                        );
-                      },
-                    );
-                  },
-                ).alignWidget(
+                Obx(() {
+                  return SettingsMenu(
+                    isDark: selectionController.isNightTime.value,
+                    addIdsFunction: () {
+                      Future.delayed(
+                        const Duration(
+                          seconds: 0,
+                        ),
+                        () {
+                          showDialog(
+                            context: context,
+                            builder: (context) => CustomSelectionDialog(
+                              isDark: selectionController.isNightTime.value,
+                              selectionOneString: "add hozzá babaazonosítót",
+                              selectionSecondString:
+                                  "add hozzá a nővér azonosítóját",
+                              babyFunction: () {
+                                Get.back();
+                                Future.delayed(
+                                  const Duration(
+                                    seconds: 0,
+                                  ),
+                                  () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) =>
+                                          CustomEnterIdAlertDialog(
+                                        formKey:
+                                            selectionController.babyFormKey,
+                                        isDark: selectionController
+                                            .isNightTime.value,
+                                        textEditingController:
+                                            selectionController
+                                                .babyIdTextController,
+                                        saveFunction: () {
+                                          selectionController
+                                              .saveBabyIdInStorage();
+                                        },
+                                        validatorFunction: (val) {
+                                          if (val!.isNotEmpty) {
+                                            return null;
+                                          } else {
+                                            return "Kérjük, írjon be egy szöveget";
+                                          }
+                                        },
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
+                              nurseFunction: () {
+                                Get.back();
+                                Future.delayed(
+                                  const Duration(
+                                    seconds: 0,
+                                  ),
+                                  () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) =>
+                                          CustomEnterIdAlertDialog(
+                                        formKey:
+                                            selectionController.nurseFormKey,
+                                        isDark: selectionController
+                                            .isNightTime.value,
+                                        textEditingController:
+                                            selectionController
+                                                .nurseIdTextController,
+                                        saveFunction: () {
+                                          selectionController
+                                              .saveNurseIdInStorage();
+                                        },
+                                        validatorFunction: (val) {
+                                          if (val!.isNotEmpty) {
+                                            return null;
+                                          } else {
+                                            return "Kérjük, írjon be egy szöveget";
+                                          }
+                                        },
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
+                            ),
+                          );
+                        },
+                      );
+                    },
+                    removeFromExistingIdsFunction: () {
+                      Future.delayed(
+                        const Duration(
+                          seconds: 0,
+                        ),
+                        () {
+                          showDialog(
+                            context: context,
+                            builder: (context) => CustomSelectionDialog(
+                              isDark: selectionController.isNightTime.value,
+                              selectionOneString: "örölje a baba azonosítóját",
+                              selectionSecondString:
+                                  "törölje a nővér azonosítóját",
+                              babyFunction: () {
+                                Get.back();
+                                Future.delayed(
+                                  const Duration(
+                                    seconds: 0,
+                                  ),
+                                  () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) =>
+                                          CustomDeleteIdAlertDialog(
+                                        isDark: selectionController
+                                            .isNightTime.value,
+                                        isForBabyDeletion: true,
+                                        idList: selectionController.babyIdList,
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
+                              nurseFunction: () {
+                                Get.back();
+                                Future.delayed(
+                                  const Duration(
+                                    seconds: 0,
+                                  ),
+                                  () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) =>
+                                          CustomDeleteIdAlertDialog(
+                                        isDark: selectionController
+                                            .isNightTime.value,
+                                        isForBabyDeletion: false,
+                                        idList: selectionController.nurseIdList,
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
+                            ),
+                          );
+                        },
+                      );
+                    },
+                  );
+                }).alignWidget(
                   alignment: Alignment.topRight,
                 ),
               ],

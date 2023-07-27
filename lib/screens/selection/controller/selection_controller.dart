@@ -15,15 +15,15 @@ class SelectionController extends GetxController {
   TextEditingController nurseIdTextController = TextEditingController();
 
   ///
-  final initialCameraIdValue = Rxn<String>();
-  final initialBabyIdValue = Rxn<String>();
-  final initialNurseIdValue = Rxn<String>();
+  String? initialCameraIdValue;
+  String? initialBabyIdValue;
+
+  String? initialNurseIdValue;
 
   ///
   TextEditingController cameraIdTextController = TextEditingController();
-  RxList<String> cameraIdList = <String>[].obs;
-  RxList<String> babyIdList = <String>[].obs;
-  RxList<String> nurseIdList = <String>[].obs;
+  List<String> babyIdList = <String>[];
+  List<String> nurseIdList = <String>[];
 
   ///
   final isNightTime = false.obs;
@@ -38,31 +38,30 @@ class SelectionController extends GetxController {
     super.onInit();
   }
 
+//Initialize Shared Preference
   initializePref() async {
     prefs = await SharedPreferences.getInstance();
-    cameraIdList.value =
-        (prefs.getStringList(ConstantStrings.cameraIdList) ?? []);
-    babyIdList.value = (prefs.getStringList(ConstantStrings.babyIdList) ?? []);
-    nurseIdList.value =
-        (prefs.getStringList(ConstantStrings.nurseIdList) ?? []);
+    babyIdList = (prefs.getStringList(ConstantStrings.babyIdList) ?? []);
+    nurseIdList = (prefs.getStringList(ConstantStrings.nurseIdList) ?? []);
     if (prefs.getString(ConstantStrings.initialCameraIdValue) != null) {
-      initialCameraIdValue.value =
+      initialCameraIdValue =
           prefs.getString(ConstantStrings.initialCameraIdValue);
-      cameraIdTextController.text = initialCameraIdValue.value!;
+      cameraIdTextController.text = initialCameraIdValue!;
       cameraId = cameraIdTextController.text;
     }
     if (prefs.getString(ConstantStrings.initialBabyIdValue) != null) {
-      initialBabyIdValue.value =
-          prefs.getString(ConstantStrings.initialBabyIdValue);
-      babyId = initialBabyIdValue.value!;
+      initialBabyIdValue = prefs.getString(ConstantStrings.initialBabyIdValue);
+      babyId = initialBabyIdValue!;
     }
     if (prefs.getString(ConstantStrings.initialNurseIdValue) != null) {
-      initialNurseIdValue.value =
+      initialNurseIdValue =
           prefs.getString(ConstantStrings.initialNurseIdValue);
-      nurseId = initialNurseIdValue.value!;
+      nurseId = initialNurseIdValue!;
     }
+    update();
   }
 
+  // Save Baby Id in Local Storage.
   saveBabyIdInStorage() async {
     if (babyFormKey.currentState!.validate()) {
       List<String> tempList =
@@ -77,14 +76,15 @@ class SelectionController extends GetxController {
         tempList.add(babyIdTextController.text);
 
         await prefs.setStringList(ConstantStrings.babyIdList, tempList);
-        babyIdList.value =
-            (prefs.getStringList(ConstantStrings.babyIdList) ?? []);
+        babyIdList = (prefs.getStringList(ConstantStrings.babyIdList) ?? []);
         babyIdTextController.clear();
         Get.back();
       }
     }
+    update();
   }
 
+// Save Nurse Id in Local Storage.
   saveNurseIdInStorage() async {
     if (nurseFormKey.currentState!.validate()) {
       List<String> tempList =
@@ -99,14 +99,55 @@ class SelectionController extends GetxController {
         tempList.add(nurseIdTextController.text);
 
         await prefs.setStringList(ConstantStrings.nurseIdList, tempList);
-        nurseIdList.value =
-            (prefs.getStringList(ConstantStrings.nurseIdList) ?? []);
+        nurseIdList = (prefs.getStringList(ConstantStrings.nurseIdList) ?? []);
         nurseIdTextController.clear();
         Get.back();
       }
     }
+    update();
   }
 
+  // Deleting Baby Id from Storage
+  deleteBabyId({required int index}) async {
+    String tempId = babyIdList.elementAt(index);
+    if (tempId == prefs.getString(ConstantStrings.initialBabyIdValue)) {
+      prefs.remove(ConstantStrings.initialBabyIdValue);
+      initialBabyIdValue = null;
+      babyId = '';
+    }
+    babyIdList.removeAt(index);
+    await prefs.setStringList(ConstantStrings.babyIdList, babyIdList);
+    update();
+    Get.back();
+    Get.snackbar(
+      "Siker!",
+      "Az azonosító sikeresen törölve.",
+      colorText: CColors.blackColor,
+      backgroundColor: Colors.green,
+    );
+  }
+
+  // Deleting Nurse Id from Storage
+  deleteNurseId({required int index}) async {
+    String tempId = nurseIdList.elementAt(index);
+    if (tempId == prefs.getString(ConstantStrings.initialNurseIdValue)) {
+      prefs.remove(ConstantStrings.initialNurseIdValue);
+      initialNurseIdValue = null;
+      nurseId = '';
+    }
+    nurseIdList.removeAt(index);
+    await prefs.setStringList(ConstantStrings.nurseIdList, nurseIdList);
+    update();
+    Get.back();
+    Get.snackbar(
+      "Siker!",
+      "Az azonosító sikeresen törölve.",
+      colorText: CColors.blackColor,
+      backgroundColor: Colors.green,
+    );
+  }
+
+  // Choosing Values
   assignCameraId({required String cameraId}) async {
     cameraIdTextController.text = cameraId;
     this.cameraId = cameraIdTextController.text;
@@ -120,6 +161,7 @@ class SelectionController extends GetxController {
     nurseId = id;
   }
 
+//Validate the Entries, Connection and Navigate
   navigateValidator() async {
     if (cameraId == "" || babyId == "" || nurseId == "") {
     } else {
@@ -148,6 +190,7 @@ class SelectionController extends GetxController {
     }
   }
 
+  // Check Theme
   getThemeValue() async {
     isNightTime.value = await AppServices.isNightTime();
   }

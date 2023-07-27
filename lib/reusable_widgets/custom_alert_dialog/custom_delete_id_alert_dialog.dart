@@ -1,3 +1,4 @@
+import 'package:annotation/screens/selection/controller/selection_controller.dart';
 import 'package:annotation/utils/gaps/gaps.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -45,53 +46,65 @@ class CustomDeleteIdAlertDialog extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             30.ph,
-            idList.isNotEmpty
-                ? SizedBox(
-                  height: 500,
-                  child: ListView.separated(
-                    padding: const EdgeInsets.symmetric(horizontal: 50),
-                    shrinkWrap: true,
-                    itemCount: idList.length,
-                    separatorBuilder: (BuildContext context, int index) =>
-                        10.ph,
-                    itemBuilder: (BuildContext context, int index) {
-                      return ListTile(
-                        title: Text(
-                          'item $index',
-                          style: isDark
-                              ? CustomTextStyles.fontBright630
-                              : CustomTextStyles.fontDark630,
-                        ),
-                        trailing: IconButton(
-                          icon: Icon(
-                            Icons.delete,
-                            color: isDark
-                                ? CColors.fontColorBrightBackground
-                                : CColors.fontColorDarkBackground,
-                            size: 40,
+            GetBuilder(
+                init: SelectionController(),
+                builder: (controller) {
+                  return idList.isNotEmpty
+                      ? SizedBox(
+                          height: 500,
+                          child: ListView.separated(
+                            padding: const EdgeInsets.symmetric(horizontal: 50),
+                            shrinkWrap: true,
+                            itemCount: idList.length,
+                            separatorBuilder:
+                                (BuildContext context, int index) => 10.ph,
+                            itemBuilder: (BuildContext context, int index) {
+                              return ListTile(
+                                title: Text(
+                                  idList[index],
+                                  style: isDark
+                                      ? CustomTextStyles.fontBright630
+                                      : CustomTextStyles.fontDark630,
+                                ),
+                                trailing: IconButton(
+                                  icon: Icon(
+                                    Icons.delete,
+                                    color: isDark
+                                        ? CColors.fontColorBrightBackground
+                                        : CColors.fontColorDarkBackground,
+                                    size: 40,
+                                  ),
+                                  onPressed: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) =>
+                                          CustomConfirmationDialog(
+                                        isDark: isDark,
+                                        positiveConfirmationFunction: () {
+                                          if (isForBabyDeletion) {
+                                            Get.find<SelectionController>()
+                                                .deleteBabyId(index: index);
+                                          } else {
+                                            Get.find<SelectionController>()
+                                                .deleteNurseId(index: index);
+                                          }
+                                        },
+                                      ),
+                                    );
+                                  },
+                                ),
+                              );
+                            },
                           ),
-                          onPressed: () {
-                            showDialog(
-                              context: context,
-                              builder: (context) =>
-                                  CustomConfirmationDialog(
-                                isDark: isDark,
-                                positiveConfirmationFunction: () {},
-                              ),
-                            );
-                          },
-                        ),
-                      );
-                    },
-                  ),
-                )
-                : Text(
-                    "Nem található azonosító",
-                    style: isDark
-                        ? CustomTextStyles.fontBright860
-                        : CustomTextStyles.fontDark860,
-                    textAlign: TextAlign.center,
-                  ),
+                        )
+                      : Text(
+                          "Nem található azonosító",
+                          style: isDark
+                              ? CustomTextStyles.fontBright860
+                              : CustomTextStyles.fontDark860,
+                          textAlign: TextAlign.center,
+                        );
+                }),
             30.ph,
             CustomBorderedElevatedButton(
               onPressedFunction: () {
