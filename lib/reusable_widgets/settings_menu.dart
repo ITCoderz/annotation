@@ -23,7 +23,7 @@ class SettingsMenu extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        needSpaceFromTop ? 30.ph : const SizedBox.shrink(),
+        needSpaceFromTop ? 25.ph : const SizedBox.shrink(),
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -49,7 +49,7 @@ class SettingsMenu extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        'add hozzá babaazonosítót',
+                        'adjon hozzá azonosítókat',
                         textAlign: TextAlign.center,
                         style: isDark
                             ? CustomTextStyles.bright530
@@ -74,7 +74,7 @@ class SettingsMenu extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        'törölje a meglévő azonosítót',
+                        'töröljön azonosítókat',
                         textAlign: TextAlign.left,
                         style: isDark
                             ? CustomTextStyles.bright530

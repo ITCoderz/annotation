@@ -126,14 +126,12 @@ class GridOptionBabyConditionTile extends StatelessWidget {
           ),
         ),
         5.ph,
-        Expanded(
-          child: Text(
-            optionTitle,
-            style: isDark
-                ? CustomTextStyles.fontBright630
-                : CustomTextStyles.fontDark630,
-            textAlign: TextAlign.center,
-          ),
+        Text(
+          optionTitle,
+          style: isDark
+              ? CustomTextStyles.fontBright630
+              : CustomTextStyles.fontDark630,
+          textAlign: TextAlign.center,
         ),
       ],
     );

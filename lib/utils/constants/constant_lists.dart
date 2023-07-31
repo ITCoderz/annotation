@@ -16,7 +16,7 @@ class ConstantLists {
 
   ///
   static const List<String> nursesIdList = [
-    'Főoldal',
+    'Föoldal',
     'Annotálás',
     'Segítség',
   ];

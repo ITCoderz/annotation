@@ -39,7 +39,7 @@ class CustomDeleteIdAlertDialog extends StatelessWidget {
             Text(
               isForBabyDeletion
                   ? "Babaazonosító lista"
-                  : "Nővér azonosító lista",
+                  : "Növér azonosító lista",
               style: isDark
                   ? CustomTextStyles.buttonLight950
                   : CustomTextStyles.buttonDark950,

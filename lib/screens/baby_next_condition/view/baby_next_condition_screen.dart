@@ -53,7 +53,7 @@ class BabyNextConditionScreen extends StatelessWidget {
                     ),
                     Expanded(
                       child: Text(
-                        "Az utóbbi percben a csecsemő",
+                        "Az utóbbi percben a csecsemö",
                         style: babyNextConditionController.isNightTime.value
                             ? CustomTextStyles.fontBright970
                             : CustomTextStyles.fontDark970,
@@ -82,9 +82,10 @@ class BabyNextConditionScreen extends StatelessWidget {
                             textAlign: TextAlign.center,
                           ),
                           SizedBox(
-                            height: 190,
+                            height: 220,
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 for (int index = 0;
                                     index <
@@ -106,7 +107,7 @@ class BabyNextConditionScreen extends StatelessWidget {
                                                       .babyBehaviourList[index]
                                                       .behaviourCode);
                                         },
-                                        height: 150,
+                                        height: 143,
                                         isDark: babyNextConditionController
                                             .isNightTime.value,
                                         isSelected: babyNextConditionController
@@ -133,9 +134,9 @@ class BabyNextConditionScreen extends StatelessWidget {
                                 : CustomTextStyles.fontDark640,
                             textAlign: TextAlign.center,
                           ),
-                          15.ph,
+                          10.ph,
                           SizedBox(
-                            height: 180,
+                            height: 184,
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
@@ -156,7 +157,7 @@ class BabyNextConditionScreen extends StatelessWidget {
                                                 .babyVoiceList[index].voiceCode,
                                           );
                                         },
-                                        height: 150,
+                                        height: 143,
                                         width: 160,
                                         isDark: babyNextConditionController
                                             .isNightTime.value,
@@ -186,9 +187,9 @@ class BabyNextConditionScreen extends StatelessWidget {
                                         : CustomTextStyles.fontDark640,
                                     textAlign: TextAlign.center,
                                   ),
-                                  15.ph,
+                                  10.ph,
                                   SizedBox(
-                                    height: 180,
+                                    height: 184,
                                     child: Row(
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
@@ -221,7 +222,7 @@ class BabyNextConditionScreen extends StatelessWidget {
                                                               .movementInCode);
                                                 }
                                               },
-                                              height: 150,
+                                              height: 143,
                                               isDark:
                                                   babyNextConditionController
                                                       .isNightTime.value,
@@ -241,10 +242,11 @@ class BabyNextConditionScreen extends StatelessWidget {
                                             );
                                           }),
                                           index ==
-                                                  ConstantLists
-                                                      .movementInList.length
+                                                  ConstantLists.movementInList
+                                                          .length -
+                                                      1
                                               ? const SizedBox.shrink()
-                                              : 20.pw,
+                                              : 25.pw,
                                         ],
                                       ],
                                     ),
@@ -262,9 +264,9 @@ class BabyNextConditionScreen extends StatelessWidget {
                                         : CustomTextStyles.fontDark640,
                                     textAlign: TextAlign.center,
                                   ),
-                        15.ph,
+                                  10.ph,
                                   SizedBox(
-                                    height: 180,
+                                    height: 184,
                                     child: Row(
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
@@ -289,7 +291,7 @@ class BabyNextConditionScreen extends StatelessWidget {
                                                       .breathingCode,
                                                 );
                                               },
-                                              height: 150,
+                                              height: 143,
                                               isDark:
                                                   babyNextConditionController
                                                       .isNightTime.value,
@@ -304,7 +306,7 @@ class BabyNextConditionScreen extends StatelessWidget {
                                           }),
                                           index ==
                                                   ConstantLists
-                                                      .breathingList.length
+                                                      .breathingList.length-1
                                               ? const SizedBox.shrink()
                                               : 20.pw,
                                         ],
@@ -317,9 +319,9 @@ class BabyNextConditionScreen extends StatelessWidget {
                           ),
                           15.ph,
                           SizedBox(
-                            height: 230,
+                            height: 270,
                             child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Expanded(
                                   flex: 2,
@@ -337,6 +339,7 @@ class BabyNextConditionScreen extends StatelessWidget {
                                       Expanded(
                                         child: Row(
                                           mainAxisSize: MainAxisSize.min,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                             for (int index = 0;
                                                 index <
@@ -360,7 +363,7 @@ class BabyNextConditionScreen extends StatelessWidget {
                                                             .eyeCode,
                                                       );
                                                     },
-                                                    height: 150,
+                                                    height: 143,
                                                     isDark:
                                                         babyNextConditionController
                                                             .isNightTime.value,
@@ -378,7 +381,7 @@ class BabyNextConditionScreen extends StatelessWidget {
                                                       ConstantLists
                                                           .eyeList.length
                                                   ? const SizedBox.shrink()
-                                                  : 5.pw,
+                                                  : 10.pw,
                                             ],
                                           ],
                                         ),
@@ -388,19 +391,25 @@ class BabyNextConditionScreen extends StatelessWidget {
                                 ),
                                 30.pw,
                                 Expanded(
-                                  child: CustomBorderedElevatedButton(
-                                    onPressedFunction: () {
-                                      babyNextConditionController
-                                          .setAllBabyCodesAndNavigateValues(
-                                        fifthOutputCodesModel:
-                                            fifthOutputCodesModel,
-                                      );
-                                    },
-                                    buttonText: "Mentés",
-                                    width: 350,
-                                    height: 150,
-                                    isDark: babyNextConditionController
-                                        .isNightTime.value,
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      45.ph,
+                                      CustomBorderedElevatedButton(
+                                        onPressedFunction: () {
+                                          babyNextConditionController
+                                              .setAllBabyCodesAndNavigateValues(
+                                            fifthOutputCodesModel:
+                                                fifthOutputCodesModel,
+                                          );
+                                        },
+                                        buttonText: "Mentés",
+                                        width: 350,
+                                        height: 150,
+                                        isDark: babyNextConditionController
+                                            .isNightTime.value,
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ],

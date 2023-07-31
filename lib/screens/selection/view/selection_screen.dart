@@ -53,7 +53,7 @@ class SelectionScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        30.ph,
+                        25.ph,
                         Text(
                           "Kérem válassza ki",
                           style: selectionController.isNightTime.value
@@ -61,7 +61,7 @@ class SelectionScreen extends StatelessWidget {
                               : CustomTextStyles.fontDark860,
                           textAlign: TextAlign.center,
                         ),
-                        30.ph,
+                        25.ph,
                         Text(
                           "A kamera azonosítót",
                           style: selectionController.isNightTime.value
@@ -112,7 +112,7 @@ class SelectionScreen extends StatelessWidget {
                         ),
                         15.ph,
                         Text(
-                          "A Csecsemo azonosítót",
+                          "A csecsemo azonosítót",
                           style: selectionController.isNightTime.value
                               ? CustomTextStyles.fontBright640
                               : CustomTextStyles.fontDark640,
@@ -207,9 +207,9 @@ class SelectionScreen extends StatelessWidget {
                             context: context,
                             builder: (context) => CustomSelectionDialog(
                               isDark: selectionController.isNightTime.value,
-                              selectionOneString: "add hozzá babaazonosítót",
+                              selectionOneString: "baba azonosító",
                               selectionSecondString:
-                                  "add hozzá a nővér azonosítóját",
+                                  "növér azonosítót",
                               babyFunction: () {
                                 Get.back();
                                 Future.delayed(
@@ -293,9 +293,9 @@ class SelectionScreen extends StatelessWidget {
                             context: context,
                             builder: (context) => CustomSelectionDialog(
                               isDark: selectionController.isNightTime.value,
-                              selectionOneString: "örölje a baba azonosítóját",
+                              selectionOneString: "baba azonosítót",
                               selectionSecondString:
-                                  "törölje a nővér azonosítóját",
+                                  "növér azonosítót",
                               babyFunction: () {
                                 Get.back();
                                 Future.delayed(

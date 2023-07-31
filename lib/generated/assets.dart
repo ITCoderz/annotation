@@ -11,8 +11,8 @@ class Assets {
   static const String babyBehaviourTemporaryWhite = 'assets/images/dark_mode/baby_next_condition/baby_behaviour/temporary_white.png';
   static const String babyNextConditionBabyNextConditionDarkBackground = 'assets/images/dark_mode/baby_next_condition/baby_next_condition_dark_background.png';
   static const String babyVoiceAllWhite = 'assets/images/dark_mode/baby_next_condition/baby_voice/all_white.png';
-  static const String babyVoiceCryingWhite = 'assets/images/dark_mode/baby_next_condition/baby_voice/crying_white.png';
-  static const String babyVoiceNoEyesWhite = 'assets/images/dark_mode/baby_next_condition/baby_voice/no_eyes_white.png';
+  static const String  babyVoiceNoEyesWhite = 'assets/images/dark_mode/baby_next_condition/baby_voice/crying_white.png';
+  static const String  babyVoiceCryingWhite= 'assets/images/dark_mode/baby_next_condition/baby_voice/no_eyes_white.png';
   static const String bemboBemboStd = 'assets/fonts/bembo/BemboStd.ttf';
   static const String bemboBemboStdBold = 'assets/fonts/bembo/BemboStd-Bold.ttf';
   static const String bemboBemboStdItalic = 'assets/fonts/bembo/BemboStd-Italic.ttf';
